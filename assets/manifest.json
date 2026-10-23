@@ -1,0 +1,793 @@
+{
+  "uwallet-0": {
+    "key": "uwallet-0",
+    "width": 1400,
+    "height": 1054,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/uwallet-0-640.webp",
+        "bytes": 51796
+      },
+      {
+        "width": 1400,
+        "path": "assets/uwallet-0-1400.webp",
+        "bytes": 158172
+      }
+    ]
+  },
+  "uwallet-7": {
+    "key": "uwallet-7",
+    "width": 1400,
+    "height": 853,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/uwallet-7-640.webp",
+        "bytes": 35702
+      },
+      {
+        "width": 1400,
+        "path": "assets/uwallet-7-1400.webp",
+        "bytes": 116316
+      }
+    ]
+  },
+  "uwallet-15": {
+    "key": "uwallet-15",
+    "width": 1400,
+    "height": 898,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/uwallet-15-640.webp",
+        "bytes": 39950
+      },
+      {
+        "width": 1400,
+        "path": "assets/uwallet-15-1400.webp",
+        "bytes": 124516
+      }
+    ]
+  },
+  "uwallet-16": {
+    "key": "uwallet-16",
+    "width": 1400,
+    "height": 996,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/uwallet-16-640.webp",
+        "bytes": 39324
+      },
+      {
+        "width": 1400,
+        "path": "assets/uwallet-16-1400.webp",
+        "bytes": 103096
+      }
+    ]
+  },
+  "uwallet-17": {
+    "key": "uwallet-17",
+    "width": 1400,
+    "height": 881,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/uwallet-17-640.webp",
+        "bytes": 48358
+      },
+      {
+        "width": 1400,
+        "path": "assets/uwallet-17-1400.webp",
+        "bytes": 146380
+      }
+    ]
+  },
+  "uwallet-18": {
+    "key": "uwallet-18",
+    "width": 1400,
+    "height": 853,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/uwallet-18-640.webp",
+        "bytes": 53236
+      },
+      {
+        "width": 1400,
+        "path": "assets/uwallet-18-1400.webp",
+        "bytes": 159350
+      }
+    ]
+  },
+  "uwallet-cover": {
+    "key": "uwallet-cover",
+    "width": 404,
+    "height": 316,
+    "sizes": [
+      {
+        "width": 404,
+        "path": "assets/uwallet-cover-404.webp",
+        "bytes": 26934
+      }
+    ]
+  },
+  "saudi-0": {
+    "key": "saudi-0",
+    "width": 1400,
+    "height": 635,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-0-640.webp",
+        "bytes": 40038
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-0-1400.webp",
+        "bytes": 157414
+      }
+    ]
+  },
+  "saudi-2": {
+    "key": "saudi-2",
+    "width": 1400,
+    "height": 820,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-2-640.webp",
+        "bytes": 35242
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-2-1400.webp",
+        "bytes": 95600
+      }
+    ]
+  },
+  "saudi-4": {
+    "key": "saudi-4",
+    "width": 1400,
+    "height": 811,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-4-640.webp",
+        "bytes": 34034
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-4-1400.webp",
+        "bytes": 101530
+      }
+    ]
+  },
+  "saudi-5": {
+    "key": "saudi-5",
+    "width": 1400,
+    "height": 793,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-5-640.webp",
+        "bytes": 40084
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-5-1400.webp",
+        "bytes": 122418
+      }
+    ]
+  },
+  "saudi-6": {
+    "key": "saudi-6",
+    "width": 1400,
+    "height": 797,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-6-640.webp",
+        "bytes": 33888
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-6-1400.webp",
+        "bytes": 101872
+      }
+    ]
+  },
+  "saudi-8": {
+    "key": "saudi-8",
+    "width": 1400,
+    "height": 1059,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-8-640.webp",
+        "bytes": 43658
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-8-1400.webp",
+        "bytes": 204192
+      }
+    ]
+  },
+  "saudi-9": {
+    "key": "saudi-9",
+    "width": 1400,
+    "height": 1415,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-9-640.webp",
+        "bytes": 61694
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-9-1400.webp",
+        "bytes": 271384
+      }
+    ]
+  },
+  "saudi-10": {
+    "key": "saudi-10",
+    "width": 1400,
+    "height": 595,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-10-640.webp",
+        "bytes": 42618
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-10-1400.webp",
+        "bytes": 131760
+      }
+    ]
+  },
+  "saudi-13": {
+    "key": "saudi-13",
+    "width": 1400,
+    "height": 1062,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/saudi-13-640.webp",
+        "bytes": 31648
+      },
+      {
+        "width": 1400,
+        "path": "assets/saudi-13-1400.webp",
+        "bytes": 130196
+      }
+    ]
+  },
+  "saudi-cover": {
+    "key": "saudi-cover",
+    "width": 404,
+    "height": 316,
+    "sizes": [
+      {
+        "width": 404,
+        "path": "assets/saudi-cover-404.webp",
+        "bytes": 35064
+      }
+    ]
+  },
+  "devil-0": {
+    "key": "devil-0",
+    "width": 1400,
+    "height": 820,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-0-640.webp",
+        "bytes": 36822
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-0-1400.webp",
+        "bytes": 129936
+      }
+    ]
+  },
+  "devil-2": {
+    "key": "devil-2",
+    "width": 1400,
+    "height": 849,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-2-640.webp",
+        "bytes": 18176
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-2-1400.webp",
+        "bytes": 79794
+      }
+    ]
+  },
+  "devil-3": {
+    "key": "devil-3",
+    "width": 1400,
+    "height": 1141,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-3-640.webp",
+        "bytes": 46756
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-3-1400.webp",
+        "bytes": 122100
+      }
+    ]
+  },
+  "devil-5": {
+    "key": "devil-5",
+    "width": 1400,
+    "height": 596,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-5-640.webp",
+        "bytes": 38688
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-5-1400.webp",
+        "bytes": 151908
+      }
+    ]
+  },
+  "devil-6": {
+    "key": "devil-6",
+    "width": 1400,
+    "height": 598,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-6-640.webp",
+        "bytes": 30118
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-6-1400.webp",
+        "bytes": 107458
+      }
+    ]
+  },
+  "devil-8": {
+    "key": "devil-8",
+    "width": 1400,
+    "height": 1068,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-8-640.webp",
+        "bytes": 22818
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-8-1400.webp",
+        "bytes": 115616
+      }
+    ]
+  },
+  "devil-9": {
+    "key": "devil-9",
+    "width": 1400,
+    "height": 1132,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-9-640.webp",
+        "bytes": 39144
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-9-1400.webp",
+        "bytes": 164830
+      }
+    ]
+  },
+  "devil-15": {
+    "key": "devil-15",
+    "width": 1400,
+    "height": 654,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-15-640.webp",
+        "bytes": 24620
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-15-1400.webp",
+        "bytes": 89664
+      }
+    ]
+  },
+  "devil-18": {
+    "key": "devil-18",
+    "width": 1400,
+    "height": 590,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/devil-18-640.webp",
+        "bytes": 34642
+      },
+      {
+        "width": 1400,
+        "path": "assets/devil-18-1400.webp",
+        "bytes": 146798
+      }
+    ]
+  },
+  "devil-cover": {
+    "key": "devil-cover",
+    "width": 404,
+    "height": 316,
+    "sizes": [
+      {
+        "width": 404,
+        "path": "assets/devil-cover-404.webp",
+        "bytes": 25434
+      }
+    ]
+  },
+  "ai-2": {
+    "key": "ai-2",
+    "width": 1400,
+    "height": 1372,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-2-640.webp",
+        "bytes": 83232
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-2-1400.webp",
+        "bytes": 262518
+      }
+    ]
+  },
+  "ai-3": {
+    "key": "ai-3",
+    "width": 1400,
+    "height": 669,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-3-640.webp",
+        "bytes": 58776
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-3-1400.webp",
+        "bytes": 219814
+      }
+    ]
+  },
+  "ai-14": {
+    "key": "ai-14",
+    "width": 1400,
+    "height": 1729,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-14-640.webp",
+        "bytes": 60058
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-14-1400.webp",
+        "bytes": 202334
+      }
+    ]
+  },
+  "ai-15": {
+    "key": "ai-15",
+    "width": 1400,
+    "height": 844,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-15-640.webp",
+        "bytes": 55436
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-15-1400.webp",
+        "bytes": 189216
+      }
+    ]
+  },
+  "ai-22": {
+    "key": "ai-22",
+    "width": 1400,
+    "height": 1778,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-22-640.webp",
+        "bytes": 48282
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-22-1400.webp",
+        "bytes": 132312
+      }
+    ]
+  },
+  "ai-23": {
+    "key": "ai-23",
+    "width": 1400,
+    "height": 808,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-23-640.webp",
+        "bytes": 63330
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-23-1400.webp",
+        "bytes": 221770
+      }
+    ]
+  },
+  "ai-33": {
+    "key": "ai-33",
+    "width": 1400,
+    "height": 1412,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-33-640.webp",
+        "bytes": 32790
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-33-1400.webp",
+        "bytes": 97400
+      }
+    ]
+  },
+  "ai-34": {
+    "key": "ai-34",
+    "width": 1400,
+    "height": 660,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-34-640.webp",
+        "bytes": 33630
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-34-1400.webp",
+        "bytes": 118028
+      }
+    ]
+  },
+  "ai-47": {
+    "key": "ai-47",
+    "width": 1400,
+    "height": 1435,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-47-640.webp",
+        "bytes": 60106
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-47-1400.webp",
+        "bytes": 184492
+      }
+    ]
+  },
+  "ai-48": {
+    "key": "ai-48",
+    "width": 1400,
+    "height": 697,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/ai-48-640.webp",
+        "bytes": 48868
+      },
+      {
+        "width": 1400,
+        "path": "assets/ai-48-1400.webp",
+        "bytes": 189052
+      }
+    ]
+  },
+  "ai-cover": {
+    "key": "ai-cover",
+    "width": 404,
+    "height": 316,
+    "sizes": [
+      {
+        "width": 404,
+        "path": "assets/ai-cover-404.webp",
+        "bytes": 44082
+      }
+    ]
+  },
+  "auto-1": {
+    "key": "auto-1",
+    "width": 1400,
+    "height": 1826,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-1-640.webp",
+        "bytes": 45704
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-1-1400.webp",
+        "bytes": 138072
+      }
+    ]
+  },
+  "auto-2": {
+    "key": "auto-2",
+    "width": 1400,
+    "height": 1651,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-2-640.webp",
+        "bytes": 65184
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-2-1400.webp",
+        "bytes": 187324
+      }
+    ]
+  },
+  "auto-3": {
+    "key": "auto-3",
+    "width": 1400,
+    "height": 1658,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-3-640.webp",
+        "bytes": 32550
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-3-1400.webp",
+        "bytes": 97218
+      }
+    ]
+  },
+  "auto-4": {
+    "key": "auto-4",
+    "width": 1400,
+    "height": 1652,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-4-640.webp",
+        "bytes": 40944
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-4-1400.webp",
+        "bytes": 115680
+      }
+    ]
+  },
+  "auto-5": {
+    "key": "auto-5",
+    "width": 1400,
+    "height": 1655,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-5-640.webp",
+        "bytes": 63444
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-5-1400.webp",
+        "bytes": 185902
+      }
+    ]
+  },
+  "auto-6": {
+    "key": "auto-6",
+    "width": 1400,
+    "height": 1654,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-6-640.webp",
+        "bytes": 46218
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-6-1400.webp",
+        "bytes": 156406
+      }
+    ]
+  },
+  "auto-7": {
+    "key": "auto-7",
+    "width": 1400,
+    "height": 1682,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-7-640.webp",
+        "bytes": 36792
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-7-1400.webp",
+        "bytes": 122684
+      }
+    ]
+  },
+  "auto-9": {
+    "key": "auto-9",
+    "width": 1400,
+    "height": 677,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-9-640.webp",
+        "bytes": 19304
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-9-1400.webp",
+        "bytes": 60878
+      }
+    ]
+  },
+  "auto-10": {
+    "key": "auto-10",
+    "width": 1400,
+    "height": 611,
+    "sizes": [
+      {
+        "width": 640,
+        "path": "assets/auto-10-640.webp",
+        "bytes": 19140
+      },
+      {
+        "width": 1400,
+        "path": "assets/auto-10-1400.webp",
+        "bytes": 71884
+      }
+    ]
+  },
+  "auto-cover": {
+    "key": "auto-cover",
+    "width": 404,
+    "height": 316,
+    "sizes": [
+      {
+        "width": 404,
+        "path": "assets/auto-cover-404.webp",
+        "bytes": 18736
+      }
+    ]
+  }
+}

@@ -1,4 +1,5 @@
-// Original image modules, in published order. Text boards are retained as artwork.
+// Source inventory in published order. The static build selects artwork only;
+// text boards are reference evidence and are not rendered in the portfolio.
 const assetBase='https://mir-s3-cdn-cf.behance.net/project_modules/';
 const projectAssets={
 uwallet:`fs_webp/6f9506254146371.6a7b8524dee2e.jpg

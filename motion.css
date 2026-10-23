@@ -1,0 +1,10 @@
+/* Explicit opt-in can enable motion; OS preference remains the initial default. */
+html.motion-on .hero-reveal{animation:heroIn .95s cubic-bezier(.2,.7,.2,1) both!important}
+html.motion-on .hero-copy h1{animation-delay:.12s!important}
+html.motion-on .hero-actions{animation-delay:.35s!important}
+html.motion-on .hero-frame img{animation:imageEnter 1.4s cubic-bezier(.2,.7,.2,1) both!important}
+html.motion-on .annotation{animation:annotationIn 1.2s .6s both!important}
+html.motion-on .marquee-track{animation:marquee 40s linear infinite!important}
+html.motion-on .marquee:hover .marquee-track{animation-play-state:paused!important}
+html.motion-on .reveal.in-view{animation:sectionIn .85s cubic-bezier(.2,.7,.2,1) both!important}
+html.motion-on .work-image img{transition:transform .7s cubic-bezier(.2,.7,.2,1)!important}
