@@ -68,3 +68,108 @@
 .case-story-compact p{margin-bottom:13px}
 @media(max-width:760px){.hero{min-height:0}.hero-title{font-size:clamp(42px,10vw,76px)}.hero-title em{font-size:clamp(28px,6vw,44px)}.hero-visual{min-height:420px}.portrait-crop img{width:100%;height:100%;left:0;bottom:0}.case-overview,.editorial-section-header{grid-template-columns:1fr}.section-story{margin:24px 0 32px;grid-template-columns:1fr}.case-overview{padding:40px 0}.editorial-section{padding:42px 0}.case-gallery{gap:17px}}
 @media(max-width:480px){.hero-title{font-size:clamp(40px,11vw,58px)}.hero-visual{min-height:370px}.portrait-crop img{width:100%;height:100%;left:0;bottom:0}.card-art,.archive-grid .card-art{aspect-ratio:auto}.case-overview-heading h2,.editorial-section-header h2{font-size:clamp(28px,8.5vw,42px)}.case-process summary{font-size:14px}.case-artwork figcaption{font-size:11px}}
+
+
+/* QA-led motion and visual sequence system — avoids moving/obscuring original artwork. */
+.case-stage{background:#242428;border-left:3px solid var(--orange);padding:clamp(24px,4vw,52px);margin:clamp(28px,5vw,66px) 0 22px;max-width:1100px}
+.case-stage-eyebrow{color:var(--lime);display:block;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin:0 0 14px}
+.case-stage h3{font-family:'Archivo Black',Impact,'Arial Black',sans-serif;font-size:clamp(24px,3.25vw,46px);letter-spacing:-.045em;line-height:1.08;margin:0}
+.case-stage p{font-size:clamp(14px,1.15vw,17px);line-height:1.6;max-width:780px;color:#d0cdc8;margin:15px 0 0}
+.case-selected{padding:36px 0 10px}
+.case-feature-intro{border-left:2px solid var(--orange);max-width:870px;padding:0 0 0 18px;font-size:15px;line-height:1.65;color:#d3d0ca;margin:0 0 25px}
+.case-source-gallery{margin-top:55px}
+.case-source-gallery summary small{font-size:11px;font-weight:500;color:#bdb9b1}
+.case-source-gallery .case-gallery{gap:26px}
+.case-artwork img{object-fit:contain;object-position:center;image-rendering:auto}
+.case-artwork figcaption{font-style:normal}
+.portfolio-case .case-overview{scroll-margin-top:80px}
+.hero-title em{font-family:'DM Sans',Arial,sans-serif;font-style:normal;font-weight:700;text-transform:none;letter-spacing:-.065em}
+.hero .portrait-crop img{filter:none}
+.hero .hero-visual{isolation:isolate}
+.site-cursor{opacity:.55}
+.project-card{transition:transform .45s var(--ease)}
+.project-card:hover,.project-card:focus-visible{transform:translateY(-5px)}
+.project-card .card-meta>b{transition:transform .35s var(--ease),color .35s var(--ease)}
+.project-card:hover .card-meta>b,.project-card:focus-visible .card-meta>b{transform:translate(4px,-4px);color:var(--orange)}
+.pill{transition:transform .3s var(--ease),box-shadow .3s var(--ease),background .25s ease}
+.mini-cv:hover{color:var(--orange)}
+@keyframes portfolio-headline-arrive{
+ from{opacity:0;transform:translate3d(0,34px,0);clip-path:inset(0 0 100% 0)}
+ to{opacity:1;transform:translate3d(0,0,0);clip-path:inset(0 0 0 0)}
+}
+@keyframes portfolio-portrait-arrive{
+ from{opacity:0;transform:translate3d(16px,26px,0) rotate(2deg)}
+ to{opacity:1;transform:translate3d(0,0,0) rotate(0)}
+}
+@keyframes portfolio-bar-wipe{
+ from{transform:scaleX(0)}
+ to{transform:scaleX(1)}
+}
+/* The page's existing IntersectionObserver reveals the rest of the narrative. */
+@media(prefers-reduced-motion:no-preference){
+ .motion-ready .hero-title>span,.motion-ready .hero-title>em{
+  animation:portfolio-headline-arrive .82s var(--ease) both
+ }
+ .motion-ready .hero-title>span:nth-child(2){animation-delay:.13s}
+ .motion-ready .hero-title>em{animation-delay:.28s}
+ .motion-ready .lime-paper{animation:portfolio-portrait-arrive .95s .12s var(--ease) both}
+ .motion-ready .hero .portrait-crop{animation:portfolio-portrait-arrive 1s .2s var(--ease) both}
+ .motion-ready #scroll-progress{transform-origin:left center;animation:portfolio-bar-wipe .65s ease-out both}
+ .case-stage{transition:background .25s ease,border-color .25s ease}
+ .case-stage:hover{background:#2b2a30}
+ .case-process[open]>.case-gallery{animation:portfolio-portrait-arrive .5s var(--ease) both}
+}
+@media(max-width:760px){
+ .case-stage{margin:28px 0 18px;padding:24px}
+ .case-stage h3{font-size:clamp(23px,6vw,38px)}
+ .case-source-gallery .case-gallery{padding:0 15px 24px}
+ .hero .hero-visual{min-height:350px}
+ .site-cursor{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+ .motion-ready .hero-title>span,.motion-ready .hero-title>em,
+ .motion-ready .hero .portrait-crop,.motion-ready .lime-paper{animation:none!important;opacity:1!important;transform:none!important;clip-path:none!important}
+ .project-card,.project-card:hover,.project-card:focus-visible{transform:none!important;transition:none!important}
+ .case-process[open]>.case-gallery{animation:none!important}
+}
+
+/* No disappearing content: motion must be optional and progressive. */
+[data-reveal],[data-reveal].is-visible{opacity:1!important;transform:none!important}
+.hero{min-height:610px;padding-top:clamp(24px,4vh,52px);padding-bottom:16px}
+.hero .hero-visual{min-height:480px}
+.work-section{padding-top:48px}
+.section-heading{margin-top:28px;margin-bottom:31px}
+@media(max-width:1080px){.hero{min-height:560px}.hero .hero-visual{min-height:460px}}
+@media(max-width:760px){
+ .hero{min-height:0;padding-top:33px}
+ .hero .hero-visual{min-height:385px}
+ .work-section{padding-top:44px}
+}
+@media(max-width:480px){.hero .hero-visual{min-height:320px}}
+
+/* Secondary archive: preserve complete access without letting older work dilute hiring positioning. */
+.archive-more{border-top:1px solid #25232260;margin-top:clamp(35px,5vw,70px);padding-top:25px}
+.archive-more summary{list-style:none;cursor:pointer;display:flex;gap:24px;align-items:center;justify-content:space-between;padding:8px 0 20px;font-family:'Archivo Black',Impact,sans-serif;font-size:clamp(19px,2vw,28px);letter-spacing:-.05em}
+.archive-more summary::-webkit-details-marker{display:none}
+.archive-more summary:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+.archive-more-label{font-family:'DM Sans',Arial,sans-serif;font-size:10px;letter-spacing:.1em;font-weight:700;text-transform:uppercase}
+.archive-more[open] .archive-more-label{font-size:0}
+.archive-more[open] .archive-more-label::after{content:'Close −';font-size:10px}
+.archive-more>p{font-size:13px;max-width:560px;line-height:1.6;color:var(--muted);margin:0 0 35px}
+.archive-more .archive-grid{padding-bottom:25px}
+@media(max-width:480px){.archive-more summary{align-items:flex-start;flex-direction:column;gap:10px}}
+
+/* Hiring pass: show artwork within the first fold even for long case names. */
+.portfolio-case .case-title-wrap h1{font-size:clamp(40px,5.8vw,86px);line-height:.96;letter-spacing:-.064em;overflow-wrap:break-word}
+.portfolio-case .case-hero{gap:clamp(18px,3vw,42px);margin-bottom:20px;align-items:end}
+.portfolio-case .case-summary{padding-top:16px}
+.portfolio-case .case-summary p{font-size:14px;margin-top:8px}
+.portfolio-case .case-summary>span{font-size:11px}
+.case-content{padding-top:25px}
+.case-back{margin-bottom:22px}
+@media(max-width:760px){
+ .portfolio-case .case-title-wrap h1{font-size:clamp(35px,10vw,62px)}
+ .portfolio-case .case-hero{gap:18px}
+ .portfolio-case .case-summary{padding-top:13px}
+ .portfolio-case .case-summary p{margin:4px 0 9px}
+}
