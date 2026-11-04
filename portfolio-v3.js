@@ -1,5 +1,9 @@
 (()=>{'use strict';
-const projects=Array.isArray(window.PORTFOLIO_PROJECTS)?window.PORTFOLIO_PROJECTS:[];
+const priority=['uwallet','uwallet-world-cup','saudi','devil','uwallet-2','olivewood','auto','ai','food','big-chips','gym','aqsa'];
+const projects=(Array.isArray(window.PORTFOLIO_PROJECTS)?[...window.PORTFOLIO_PROJECTS]:[]).sort((x,y)=>{
+ const a=priority.indexOf(x.key), b=priority.indexOf(y.key);
+ return (a<0?999:a)-(b<0?999:b);
+});
 const editorial=window.PORTFOLIO_EDITORIAL||{};
 const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const num=n=>String(n).padStart(2,'0');
@@ -48,7 +52,7 @@ if(caseRoot){
    const gallery=selected?
      info.sections.map(s=>narrativeSection(project,s)).join('')+
      (info.process?`<details class="case-process"><summary><span>${esc(info.process.title)}</span><span class="summary-action">Explore process +</span></summary><p>${esc(info.process.intro||'')}</p><div class="case-gallery">${info.process.artworks.map(i=>artwork(project,i)).join('')}</div></details>`:''):
-     `${info.challenge||info.approach?`<section class="case-story-compact"><h2>Creative approach</h2>${info.challenge?`<p>${esc(info.challenge)}</p>`:''}${info.approach?`<p>${esc(info.approach)}</p>`:''}</section>`:''}<div class="case-gallery">${project.images.map((src,i)=>artwork(project,i)).join('')}</div>`;
+     `${info.challenge||info.approach?`<section class="case-story-compact"><h2>Creative approach</h2>${info.challenge?`<p>${esc(info.challenge)}</p>`:''}${info.approach?`<p>${esc(info.approach)}</p>`:''}</section>`:''}<div class="case-gallery">${project.images.map((src,i)=>info.omittedEditorialBoards?.includes(i)?'':artwork(project,i)).join('')}</div>`;
    caseRoot.innerHTML=`<article class="portfolio-case"><header class="case-hero" data-reveal><div class="case-title-wrap"><span class="eyebrow">${esc(project.tag)} / ${num(index+1)} — ${num(projects.length)}</span><h1 class="display">${esc(project.name)}</h1></div><div class="case-summary"><p>${esc(info.summary||project.description)}</p><span>${esc(info.kind||project.context)}</span></div></header><img class="case-cover" src="${esc(project.cover)}" alt="Original ${esc(project.name)} project cover" fetchpriority="high">${overview(project,info)}${gallery}<nav class="case-more" aria-label="Next project"><div><span class="case-back">NEXT PROJECT / ${num((index+1)%projects.length+1)}</span><h2 class="display"><a href="case.html?id=${encodeURIComponent(next.key)}">${esc(next.name)} ↗</a></h2></div><a class="pill pill-light" href="index.html#work">All ${projects.length} projects ↗</a></nav></article>`;
  }
 }
