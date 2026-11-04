@@ -44,7 +44,7 @@ assert.deepEqual(wcOrder.slice(6),wcExecution,'World Cup execution group must re
 assert.deepEqual(Array.from(meta.ai.featuredIndices),[2,10,11,15],'Multi-brand front gallery cannot reintroduce uncurated automotive/retail work.');
 
 const index=read('index.html'),c=read('case.html'),js=read('portfolio-v3.js'),css=read('portfolio-v3.css');
-const assetVersion=index.match(/portfolio-editorial\\.js\\?v=(\\d+)/)?.[1];
+const assetVersion=index.split('portfolio-editorial.js?v=')[1]?.split('"')[0];
 assert(assetVersion,'Homepage must expose a cache-busted editorial asset.');
 for(const html of [index,c]){
  for(const asset of ['portfolio-editorial.js','portfolio-v3.js','portfolio-v3.css'])
