@@ -132,3 +132,17 @@
  .project-card,.project-card:hover,.project-card:focus-visible{transform:none!important;transition:none!important}
  .case-process[open]>.case-gallery{animation:none!important}
 }
+
+/* No disappearing content: motion must be optional and progressive. */
+[data-reveal],[data-reveal].is-visible{opacity:1!important;transform:none!important}
+.hero{min-height:610px;padding-top:clamp(24px,4vh,52px);padding-bottom:16px}
+.hero .hero-visual{min-height:480px}
+.work-section{padding-top:48px}
+.section-heading{margin-top:28px;margin-bottom:31px}
+@media(max-width:1080px){.hero{min-height:560px}.hero .hero-visual{min-height:460px}}
+@media(max-width:760px){
+ .hero{min-height:0;padding-top:33px}
+ .hero .hero-visual{min-height:385px}
+ .work-section{padding-top:44px}
+}
+@media(max-width:480px){.hero .hero-visual{min-height:320px}}
