@@ -158,3 +158,18 @@
 .archive-more>p{font-size:13px;max-width:560px;line-height:1.6;color:var(--muted);margin:0 0 35px}
 .archive-more .archive-grid{padding-bottom:25px}
 @media(max-width:480px){.archive-more summary{align-items:flex-start;flex-direction:column;gap:10px}}
+
+/* Hiring pass: show artwork within the first fold even for long case names. */
+.portfolio-case .case-title-wrap h1{font-size:clamp(40px,5.8vw,86px);line-height:.96;letter-spacing:-.064em;overflow-wrap:break-word}
+.portfolio-case .case-hero{gap:clamp(18px,3vw,42px);margin-bottom:20px;align-items:end}
+.portfolio-case .case-summary{padding-top:16px}
+.portfolio-case .case-summary p{font-size:14px;margin-top:8px}
+.portfolio-case .case-summary>span{font-size:11px}
+.case-content{padding-top:25px}
+.case-back{margin-bottom:22px}
+@media(max-width:760px){
+ .portfolio-case .case-title-wrap h1{font-size:clamp(35px,10vw,62px)}
+ .portfolio-case .case-hero{gap:18px}
+ .portfolio-case .case-summary{padding-top:13px}
+ .portfolio-case .case-summary p{margin:4px 0 9px}
+}
