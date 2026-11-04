@@ -14,6 +14,13 @@ test('Homepage: positioning, complete covers, source aspect ratios, responsive l
  const img=page.locator('.project-card img').first();
  await expect(img).toBeVisible();
  await expect.poll(()=>img.evaluate(el=>el.complete&&el.naturalWidth>0)).toBeTruthy();
+ // Simulate an actual reader scrolling the full collection; verify every lazy image.
+ const cardImages=await page.locator('.project-card img').all();
+ for(const cardImage of cardImages){
+  await cardImage.scrollIntoViewIfNeeded();
+  await expect.poll(()=>cardImage.evaluate(el=>el.complete&&el.naturalWidth>0),{timeout:20000}).toBeTruthy();
+ }
+ await page.evaluate(()=>window.scrollTo(0,0));
  expect(errors).toEqual([]);
  await page.screenshot({path:`test-results/home-${testInfo.project.name}.png`,fullPage:true,animations:'disabled'});
  if(testInfo.project.name==='mobile'){
