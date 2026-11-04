@@ -37,10 +37,17 @@ assert(b.findIndex(x=>x.type==='image'&&x.index===13)<b.findIndex(x=>x.type==='i
 const wc=meta['uwallet-world-cup'];
 assert.equal(wc.sections.length,3,'World Cup must separate type, visual development, and executions.');
 const wcOrder=Array.from(wc.sections,section=>Array.from(section.sequence).filter(x=>x.type==='image').map(x=>x.index)).flat();
-const wcType=[2,6,12],wcDevelopment=[3,4,9],wcExecution=[0,5,7,8,10,11,13,14];
+const wcType=[2,6,12],wcDevelopment=[3,4,9],wcExecution=[0,7,8,10,11,13,14];
 assert.deepEqual(wcOrder.slice(0,3),wcType,'All three World Cup typography boards must appear first.');
 assert.deepEqual(wcOrder.slice(3,6),wcDevelopment,'World Cup composition studies must precede execution.');
-assert.deepEqual(wcOrder.slice(6),wcExecution,'World Cup execution group must remain complete and source-grounded.');
+assert.deepEqual(wcOrder.slice(6),wcExecution,'World Cup display must contain every unique execution exactly once.');
+const worldCupProject=projects.find(p=>p.key==='uwallet-world-cup');
+const visibleHashes=wcOrder.map(i=>require('node:crypto').createHash('sha256').update(fs.readFileSync(worldCupProject.images[i])).digest('hex'));
+assert.equal(new Set(visibleHashes).size,visibleHashes.length,'World Cup must not display byte-identical artworks twice.');
+assert.equal(fs.readFileSync(worldCupProject.images[0]).equals(fs.readFileSync(worldCupProject.images[5])),true,'Duplicate source identity changed; review omission.');
+assert(wc.omittedEditorialBoards.includes(5),'The preserved duplicate source board must be omitted from case gallery.');
+const saudi=projects.find(p=>p.key==='saudi');
+assert.deepEqual(Array.from(meta.saudi.featuredIndices),[4,6,7,10,11],'Saudi original cover is the hero, and complementary meal art leads the gallery.');
 assert.deepEqual(Array.from(meta.ai.featuredIndices),[2,10,11,15],'Multi-brand front gallery cannot reintroduce uncurated automotive/retail work.');
 
 const index=read('index.html'),c=read('case.html'),js=read('portfolio-v3.js'),css=read('portfolio-v3.css');
@@ -56,6 +63,7 @@ for(const i of [3,4,5,13,14,15])
  assert(olive.omittedEditorialBoards.includes(i),'Olivewood text board '+i+' must not be rendered as portfolio artwork.');
 assert(olive.credits.includes('Art Director'),'Olivewood HTML attribution must reflect its original collaboration board.');
 assert(index.includes('HIRING A<br>GRAPHIC<br>DESIGNER'),'Contact section should address agency recruitment.');
+assert(!js.includes("project.key==='saudi'?project.images[4]"),'Saudi cover must not be silently replaced by image index 4.');
 assert(js.includes('motion-ready')&&css.includes('portfolio-headline-arrive'),'Expected actual controlled site motion.');
 assert(css.includes('prefers-reduced-motion:reduce'),'Reduced motion styles must exist.');
 for(const f of ['portfolio-v3.js','portfolio-editorial.js','portfolio-data.js'])new (require('node:vm').Script)(read(f),{filename:f});
