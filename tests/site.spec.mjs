@@ -31,10 +31,13 @@ test('Uwallet narrative: typography before creative applications, no duplicated 
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/case.html?id=uwallet');
  await expect(page.getByRole('heading',{name:'Uwallet Campaigns',exact:true})).toBeVisible();
+ await page.screenshot({path:`test-results/uwallet-opening-${testInfo.project.name}.png`,fullPage:false,animations:'disabled'});
  const sections=page.locator('.editorial-section');
  await expect(sections).toHaveCount(2);
  const a=sections.nth(0),b=sections.nth(1);
  await expect(a.locator('.case-stage').first()).toContainText('Campaign typography');
+ await a.locator('.case-stage').first().scrollIntoViewIfNeeded();
+ await page.screenshot({path:`test-results/uwallet-type-${testInfo.project.name}.png`,fullPage:false,animations:'disabled'});
  await expect(b.locator('.case-stage').first()).toContainText('Campaign typography');
  const aImages=await a.locator('.case-artwork img').evaluateAll(els=>els.map(el=>el.getAttribute('src')));
  const bImages=await b.locator('.case-artwork img').evaluateAll(els=>els.map(el=>el.getAttribute('src')));
