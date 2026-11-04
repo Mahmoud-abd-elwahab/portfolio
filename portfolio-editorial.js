@@ -44,6 +44,7 @@ window.PORTFOLIO_EDITORIAL = {
   },
   saudi: {
     kind: 'Agency social media work · Servix Marketing',
+    omittedEditorialBoards: [1],
     summary: 'Social media visuals communicating meal-plan, prepared-food and delivery services across everyday situations.',
     credits: 'Creative Visual Designer — social media visual design. No sole campaign-strategy or performance claim.',
     challenge: 'Communicate the meal-plan service clearly across multiple social media messages.',
@@ -57,17 +58,23 @@ window.PORTFOLIO_EDITORIAL = {
     approach: 'Dramatic lighting, cinematic framing and recurring environmental cues establish continuity across different artworks.'
   },
   'uwallet-world-cup': {
-    kind: 'Football-themed fintech campaign portfolio project',
-    summary: 'A collection of Jordan-focused World Cup 2026 campaign visuals and match-day creative directions.',
-    credits: 'Individual role and deployment status not independently verified in the repository’s source audit.'
+    kind: 'Agency creative visuals · leoden dentsu',
+    summary: 'A social-first World Cup campaign exploration for uWallet, connecting the brand’s cashback communication with Jordan’s first World Cup qualification.',
+    credits: 'Creative Visual Designer — as credited in the published project brief board. Live rollout and performance metrics are not verified.',
+    challenge: 'Celebrate Jordan’s football milestone, make the cashback proposition visible and keep the visual language adaptable across tournament-related content.',
+    approach: 'The source project explores fan emotion, brand presence and the payment experience as separate visual directions before developing a repeatable match-day visual system.',
+    omittedEditorialBoards: [1]
   },
   'uwallet-2': {
-    kind: 'Fintech marketing visuals',
-    summary: 'Promotional and social visuals produced across several uWallet briefs.',
-    credits: 'Specific concept ownership and live results are not established in the current source notes.'
+    kind: 'Agency campaign assets · leoden dentsu',
+    summary: 'A selection of uWallet campaign visuals, promotional artwork and product communication across multiple briefs.',
+    credits: 'Creative Visual Designer — as credited in the original published project description. No separate claim to campaign strategy or measured results.',
+    challenge: 'Different product updates and promotions needed a consistent branded visual approach.',
+    approach: 'The executions focus on identifiable product cues and varied campaign scenarios while working within uWallet’s visual identity.',
+    omittedEditorialBoards: [1]
   },
-  olivewood: {kind:'Entertainment visuals',credits:'Specific agency and personal contribution have not been verified in the existing source audit.'},
-  'big-chips': {kind:'Food social media artwork',credits:'Specific agency and concept ownership have not been verified in the existing source audit.'},
+  olivewood: {kind:'Entertainment visuals',summary:'Visual concepts presenting Jordan as a film-production backdrop for Olivewood Studios.',credits:'Specific agency and individual role ownership have not been verified in the existing source audit.',challenge:'Introduce the studio and its production setting visually.',approach:'The showcased artworks connect Jordanian environments with cinematic framing and studio messaging.',omittedEditorialBoards:[2]},
+  'big-chips': {kind:'Food packaging and social artwork',summary:'Packaging refresh concepts and social media visuals for the Egyptian snack brand Big Chips.',credits:'Original project board describes a proposed packaging look and social campaign; commissioning and results are not independently verified.',approach:'The portfolio boards show the packaging treatment alongside product-led social executions.',omittedEditorialBoards:[1]},
   food: {kind:'Food social media artwork',credits:'Specific agency and concept ownership have not been verified in the existing source audit.'},
   ai: {kind:'Selected multi-brand visual work',summary:'Selected AI-assisted visual explorations across different communication contexts; not presented as one brand-identity system.',credits:'A collection of visual work, not a single commissioned identity campaign.'},
   auto: {kind:'Independent automotive visual exploration',summary:'An independent study of automotive visual treatments, environment, lighting and composition.',credits:'Independent exploration — not commissioned advertising.'},
