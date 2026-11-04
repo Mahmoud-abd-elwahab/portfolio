@@ -222,3 +222,10 @@
   .hero .hero-visual{min-height:175px;height:175px;max-width:270px}
   .section-heading .handnote{display:none}
 }
+
+/* Long hiring-oriented CTA must fit 360–390px screens; keep email visible on mobile. */
+@media (max-width:480px){
+  .contact-section h2{font-size:clamp(43px,12vw,56px);letter-spacing:-.06em;line-height:.96;overflow-wrap:anywhere;max-width:100%}
+  .site-footer{flex-wrap:wrap;gap:12px 18px}
+  .site-footer a:nth-child(2){display:inline}
+}
