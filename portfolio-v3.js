@@ -62,7 +62,7 @@ const genericGallery=(project,info)=>{
  const show=new Set(featured);
  const extra=sequence.filter(i=>!show.has(i)&&i!==representedByCaseHero);
  const body=`<section class="case-selected" aria-label="Selected project visuals">${info.featureIntro?`<p class="case-feature-intro">${esc(info.featureIntro)}</p>`:''}<div class="case-gallery">${featured.map(i=>artwork(project,i)).join('')}</div></section>`;
- return body+(extra.length?`<details class="case-process case-source-gallery"><summary><span>Complete source gallery <small>(${extra.length} additional boards)</small></span><span class="summary-action">Explore all +</span></summary><p>Additional project boards are preserved in their source order. They include alternate executions, presentation details and process documentation.</p><div class="case-gallery">${extra.map(i=>artwork(project,i)).join('')}</div></details>`:'' );
+ return body+(extra.length?`<details class="case-process case-source-gallery"><summary><span>More source boards <small>(${extra.length} additional boards)</small></span><span class="summary-action">Explore all +</span></summary><p>Additional project boards are preserved in their source order. They include alternate executions, presentation details and process documentation.</p><div class="case-gallery">${extra.map(i=>artwork(project,i)).join('')}</div></details>`:'' );
 };
 
 if(caseRoot){
