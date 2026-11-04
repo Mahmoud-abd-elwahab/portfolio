@@ -198,3 +198,7 @@
  .section-heading{margin-top:16px;margin-bottom:15px}
  .section-heading h2{font-size:clamp(50px,11vw,78px)}
 }
+
+/* Let native aspect ratios take over on load, with a placeholder ratio before lazy image decode.
+   A zero-height lazy image can otherwise hide its artwork below a section heading. */
+.case-artwork img{aspect-ratio:auto 16 / 9}
