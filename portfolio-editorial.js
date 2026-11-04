@@ -62,8 +62,9 @@ window.PORTFOLIO_EDITORIAL = {
   },
   saudi: {
     kind: 'Agency social media work · Servix Marketing',
-    omittedEditorialBoards: [1],
-    summary: 'Social media visuals communicating meal-plan, prepared-food and delivery services across everyday situations.',
+    omittedEditorialBoards: [1,15],
+    featuredIndices: [0,4,6,7,10,11,12],
+    summary: 'Social media visuals communicating meal plans, prepared food and delivery through distinct daily-life situations.',
     credits: 'Creative Visual Designer — social media visual design. No sole campaign-strategy or performance claim.',
     challenge: 'Communicate the meal-plan service clearly across multiple social media messages.',
     approach: 'Daily routines and food-focused compositions provide variety while preserving a consistent brand treatment.'
