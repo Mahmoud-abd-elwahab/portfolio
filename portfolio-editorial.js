@@ -52,6 +52,7 @@ window.PORTFOLIO_EDITORIAL = {
   },
   devil: {
     kind: 'Agency social artwork · Servix Marketing',
+    omittedEditorialBoards: [20, 23],
     summary: 'Cinematic horror-themed social artwork produced using AI-assisted visual development, photo manipulation and compositing.',
     credits: 'Creative Visual Designer — social visual production and image-making. Campaign strategy ownership not asserted.',
     challenge: 'Maintain a recognizable visual atmosphere across recurring promotional posts.',
@@ -75,9 +76,9 @@ window.PORTFOLIO_EDITORIAL = {
   },
   olivewood: {kind:'Entertainment visuals',summary:'Visual concepts presenting Jordan as a film-production backdrop for Olivewood Studios.',credits:'Specific agency and individual role ownership have not been verified in the existing source audit.',challenge:'Introduce the studio and its production setting visually.',approach:'The showcased artworks connect Jordanian environments with cinematic framing and studio messaging.',omittedEditorialBoards:[2]},
   'big-chips': {kind:'Food packaging and social artwork',summary:'Packaging refresh concepts and social media visuals for the Egyptian snack brand Big Chips.',credits:'Original project board describes a proposed packaging look and social campaign; commissioning and results are not independently verified.',approach:'The portfolio boards show the packaging treatment alongside product-led social executions.',omittedEditorialBoards:[1]},
-  food: {kind:'Food social media artwork',credits:'Specific agency and concept ownership have not been verified in the existing source audit.'},
+  food: {kind:'Independent food social design studies',summary:'Unofficial food and beverage design studies using recognizable Egyptian product categories.',credits:'Uncommissioned / unofficial concept work, as labelled in the original project boards. Brand endorsement or release is not asserted.',omittedEditorialBoards:[1]},
   ai: {kind:'Selected multi-brand visual work',summary:'Selected AI-assisted visual explorations across different communication contexts; not presented as one brand-identity system.',credits:'A collection of visual work, not a single commissioned identity campaign.'},
-  auto: {kind:'Independent automotive visual exploration',summary:'An independent study of automotive visual treatments, environment, lighting and composition.',credits:'Independent exploration — not commissioned advertising.'},
+  auto: {kind:'Independent automotive visual exploration',summary:'Unreleased automotive visual concepts exploring cinematic environments, lighting and vehicle-focused composition.',credits:'Personal/unreleased exploration — not commissioned advertising.',omittedEditorialBoards:[0]},
   gym: {kind:'Brand identity design',credits:'Brief scope is shown in the source project; launch and business results are not verified.'},
   aqsa: {kind:'Personal editorial poster',credits:'Personal project / editorial expression, not commercial agency work.'}
 };
