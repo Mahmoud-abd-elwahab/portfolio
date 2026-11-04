@@ -53,3 +53,16 @@ A PR check does not prove public Pages deployment. The new `.github/workflows/pr
 - Supporting work: uWallet product campaign visuals, Olivewood, Automotive exploration, Multi-brand selections, Food visual studies.
 - Earlier/secondary: Big Chips, GYM Time, Al-Aqsa poster.
 - Editorial claims are bounded by visible source evidence. The agency recruiter still has to judge actual artwork quality and role fit, not just code correctness or successful automated tests.
+
+## Hiring-oriented editorial refinement — 4 November 2026, PR #3
+
+- Reviewable branch: `fix/hiring-case-curation-mobile-20261104`; PR: https://github.com/Mahmoud-abd-elwahab/portfolio/pull/3
+- Kept the existing white editorial site, twelve unique cases, project order, and all 237 original image boards. No original image was modified or removed.
+- Homepage: strengthened graphic-design/campaign positioning, made the About and contact copy directly relevant to agency hiring, retained verified email/CV, and added a Behance footer link.
+- Mobile: reduced portrait/intro height, simplified the Work heading hierarchy, and kept the first project artwork much earlier in the scroll. Fixed the mobile width overflow caused by the longer hiring CTA and wrapped footer links.
+- Olivewood: five actual Key Visual executions are featured instead of embedded text-only boards. Text-only source boards remain preserved in the repository/Behance; the source credit confirms Graphic Designer execution under approved creative direction in collaboration with an Art Director, and this is now stated as editable HTML.
+- Uwallet entertainment and World Cup: refined the case explanations to connect product visibility with visual treatment, without adding campaign performance assertions.
+- Saudi Royal: reduced featured selections while keeping the remaining original artwork available in the expandable source gallery.
+- Updated static release tests to check cross-page asset revision coherence, and extended browser QA with hiring CTA, mobile first fold, and Olivewood image/credit checks.
+- **PASS**: GitHub Actions `Portfolio hiring-readiness QA` run https://github.com/Mahmoud-abd-elwahab/portfolio/actions/runs/41912977070 for code commit `5154accf915b2fdc207e89111f66baf21c799afc`. Static source audit and browser suite passed on desktop, tablet and mobile. Screenshots from the successful run were reviewed, including the revised 390px homepage first fold.
+- **Not published by this PR**: GitHub Pages still serves the default `main` branch pending merge. Do not describe this PR as deployed. Production smoke verification must run against the merge commit and verify served bytes before a live release is certified.
