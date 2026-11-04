@@ -7,6 +7,8 @@ test('Homepage: positioning, complete covers, source aspect ratios, responsive l
  await page.goto('/');
  await expect(page.locator('#work')).toBeVisible();
  await expect(page.locator('.project-card')).toHaveCount(12);
+ expect(await page.locator('.project-card').evaluateAll(nodes=>nodes.every(node=>getComputedStyle(node).opacity==='1'))).toBeTruthy();
+ expect(await page.locator('.featured-grid').evaluate(el=>el.getBoundingClientRect().height>200)).toBeTruthy();
  await expect(page.getByRole('heading',{name:/campaign visuals/i})).toBeVisible();
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2)).toBeTruthy();
  const img=page.locator('.project-card img').first();
