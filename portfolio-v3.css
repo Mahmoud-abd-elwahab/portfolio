@@ -173,3 +173,32 @@
  .portfolio-case .case-summary{padding-top:13px}
  .portfolio-case .case-summary p{margin:4px 0 9px}
 }
+
+/* Hiring gate / 04 Nov 2026: surface real artwork earlier without trimming or distorting source images. */
+@media (min-width:1081px){
+ .hero{min-height:485px;padding-top:22px;padding-bottom:10px}
+ .hero .hero-visual{min-height:385px}
+ .hero-title{font-size:clamp(54px,6.1vw,95px)}
+ .hero-description{margin-top:16px}
+ .hero-actions{margin-top:18px}
+ .identity{margin-bottom:17px}
+ .hero-caption{margin-top:6px;padding-top:10px}
+ .work-section{padding-top:24px}
+ .section-heading{margin-top:18px;margin-bottom:20px}
+ .section-heading h2{font-size:clamp(66px,6vw,98px)}
+}
+@media (max-width:760px){
+ .hero{padding-top:22px}
+ .hero .hero-visual{min-height:260px}
+ .hero-description{margin-top:14px;font-size:14px;line-height:1.5}
+ .hero-actions{margin-top:15px}
+ .identity{margin-bottom:12px}
+ .hero-caption{margin-top:5px}
+ .work-section{padding-top:24px}
+ .section-heading{margin-top:16px;margin-bottom:15px}
+ .section-heading h2{font-size:clamp(50px,11vw,78px)}
+}
+
+/* Let native aspect ratios take over on load, with a placeholder ratio before lazy image decode.
+   A zero-height lazy image can otherwise hide its artwork below a section heading. */
+.case-artwork img{aspect-ratio:auto 16 / 9}

@@ -1,0 +1,52 @@
+name: Production Pages smoke QA
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+jobs:
+  verify-public-pages:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Confirm live HTTP responses match the deployed repository bytes
+        shell: bash
+        env:
+          BASE: https://mahmoud-abd-elwahab.github.io/portfolio
+        run: |
+          set -euo pipefail
+          for attempt in $(seq 1 36); do
+            if curl --fail --location --silent --show-error --max-time 20 \
+                 -H 'Cache-Control: no-cache' "$BASE/?release=$GITHUB_SHA" -o /tmp/live-index.html \
+                 && cmp -s index.html /tmp/live-index.html; then
+              echo "Live homepage now matches commit $GITHUB_SHA (attempt $attempt)."
+              break
+            fi
+            if [ "$attempt" -eq 36 ]; then
+              echo "::error::Pages homepage did not match current commit after 6 minutes."
+              exit 1
+            fi
+            sleep 10
+          done
+
+          verify() {
+            local file="$1"
+            local dest="/tmp/live-$(basename "$file")"
+            curl --fail --location --silent --show-error --max-time 30 \
+                 -H 'Cache-Control: no-cache' \
+                 "$BASE/$file?release=$GITHUB_SHA" -o "$dest"
+            if ! cmp -s "$file" "$dest"; then
+              echo "::error::$file served bytes do not match the repository."
+              exit 1
+            fi
+            echo "Verified live: $file ($(wc -c < "$dest") bytes)"
+          }
+          verify case.html
+          verify portfolio-data.js
+          verify portfolio-editorial.js
+          verify portfolio-v3.js
+          verify portfolio-v3.css
+          verify behance-projects/ai/images/1eafe7f7e9b0b5d1.webp
+          verify behance-projects/uwallet-world-cup/cover/cover.webp
+          verify Mahmoud_Abd_Elwahab_CV.pdf
+          echo "PUBLIC DEPLOYMENT VERIFIED for $GITHUB_SHA"
