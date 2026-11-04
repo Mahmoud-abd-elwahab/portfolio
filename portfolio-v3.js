@@ -1,14 +1,15 @@
 (()=>{'use strict';
 const projects=Array.isArray(window.PORTFOLIO_PROJECTS)?window.PORTFOLIO_PROJECTS:[];
+const editorial=window.PORTFOLIO_EDITORIAL||{};
 const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const num=n=>String(n).padStart(2,'0');
 const card=(project,index)=>`<a class="project-card" data-reveal href="case.html?id=${encodeURIComponent(project.key)}" aria-label="Open the complete ${esc(project.name)} project">
   <div class="card-art">
-    <span class="card-number">${num(index+1)} / 12</span>
+    <span class="card-number">${num(index+1)} / ${num(projects.length)}</span>
     <img src="${esc(project.cover)}" alt="Original Behance cover for ${esc(project.name)}" loading="${index<4?'eager':'lazy'}" decoding="async">
     <span class="view-circle" aria-hidden="true"><span>VIEW<br>PROJECT ↗</span></span>
   </div>
-  <div class="card-meta"><div><h3>${esc(project.name)}</h3><p>${esc(project.tag)} · ${project.imageCount} project boards</p></div><b aria-hidden="true">↗</b></div>
+  <div class="card-meta"><div><h3>${esc(project.name)}</h3><p>${esc(project.tag)}</p></div><b aria-hidden="true">↗</b></div>
 </a>`;
 const featured=document.getElementById('featured-projects');
 const archive=document.getElementById('archive-projects');
@@ -16,36 +17,40 @@ if(featured)featured.innerHTML=projects.slice(0,4).map(card).join('');
 if(archive)archive.innerHTML=projects.slice(4).map((p,i)=>card(p,i+4)).join('');
 
 const caseRoot=document.getElementById('case-root');
+const artwork=(project,index,caption='')=>{
+  const src=project.images[index];
+  if(!src)return '';
+  const alt=caption||project.name+' — artwork '+(index+1);
+  return `<figure class="case-artwork" data-reveal><a href="${esc(src)}" data-lightbox aria-label="View artwork ${index+1}: ${esc(project.name)}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async"></a>${caption?`<figcaption>${esc(caption)}</figcaption>`:''}</figure>`;
+};
+const overview=(project,info)=>{
+  const facts=[['Project type',info.kind||project.discipline],['Source',`<a class="case-source" href="${esc(project.source)}" rel="noopener noreferrer" target="_blank">Original Behance project ↗</a>`]];
+  return `<div class="case-overview"><div class="case-overview-heading"><span class="case-label">PROJECT CONTEXT</span><h2>What this work<br>is about.</h2></div><div class="case-overview-copy"><p>${esc(info.summary||project.description)}</p><dl>${facts.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${v}</dd></div>`).join('')}</dl>${info.credits?`<p class="case-credits"><strong>Contribution &amp; attribution</strong>${esc(info.credits)}</p>`:''}</div></div>`;
+};
+const narrativeSection=(project,section)=>{
+ const texts=[['Challenge',section.challenge],['Creative approach',section.approach]].filter(row=>row[1]);
+ return `<section class="editorial-section" aria-label="${esc(section.title)}"><header class="editorial-section-header"><div><span class="case-label">${esc(section.title)}</span><span class="section-context">${esc(section.eyebrow||'')}</span></div><h2>${esc(section.lead||section.title)}</h2></header><div class="section-story">${texts.map(([title,body])=>`<div><h3>${esc(title)}</h3><p>${esc(body)}</p></div>`).join('')}</div><div class="case-gallery">${section.artworks.map(idx=>artwork(project,idx,section.captions?.[idx]||'')).join('')}</div></section>`;
+};
 if(caseRoot){
-  const id=new URLSearchParams(location.search).get('id');
-  const project=projects.find(item=>item.key===id);
-  if(!project){
-    document.title='Project not found — Mahmoud Abdel Wahab';
-    caseRoot.innerHTML='<section class="case-intro"><h1 class="display">PROJECT NOT FOUND.</h1><p><a class="pill pill-dark" href="index.html#work">Return to all projects ↗</a></p></section>';
-  }else{
-    const index=projects.indexOf(project);
-    const next=projects[(index+1)%projects.length];
-    document.title=`${project.name} — Mahmoud Abdel Wahab`;
-    const meta=document.querySelector('meta[name="description"]');
-    if(meta)meta.content=`Complete ${project.name} project presentation with ${project.imageCount} original portfolio boards.`;
-    const gallery=project.images.map((src,imageIndex)=>`<figure data-reveal>
-      <a href="${esc(src)}" data-lightbox aria-label="Open artwork ${imageIndex+1} from ${esc(project.name)}">
-        <img src="${esc(src)}" alt="${esc(project.name)} — original project artwork ${imageIndex+1} of ${project.imageCount}" loading="${imageIndex<2?'eager':'lazy'}" decoding="async">
-      </a>
-      <figcaption>${num(imageIndex+1)} / ${num(project.imageCount)}</figcaption>
-    </figure>`).join('');
-    caseRoot.innerHTML=`<article>
-      <header class="case-hero" data-reveal>
-        <div class="case-title-wrap"><span class="eyebrow">${esc(project.tag)} &nbsp; / &nbsp; ${num(index+1)} — 12</span><h1 class="display">${esc(project.name)}</h1></div>
-        <div class="case-summary"><p>${esc(project.description)}</p><div class="case-facts"><div><b>Discipline</b>${esc(project.discipline)}</div><div><b>Published</b>${esc(project.date)}</div><div><b>Project boards</b>${project.imageCount} in original order</div><div><b>Context</b>${esc(project.context)}</div></div></div>
-      </header>
-      <img class="case-cover" src="${esc(project.cover)}" alt="Original Behance cover for ${esc(project.name)}" fetchpriority="high">
-      <section class="case-intro"><h2 class="display">THE FULL<br>PROJECT.</h2><p>The complete published sequence is shown below without cropping or replacing the original artwork. Mockups, campaign executions and presentation boards remain in their Behance order.</p></section>
-      <div class="case-progress"><span>ORIGINAL PROJECT SEQUENCE</span><span>${project.imageCount} BOARDS ↓</span></div>
-      <section class="case-gallery" aria-label="Complete ${esc(project.name)} project gallery">${gallery}</section>
-      <nav class="case-more" aria-label="Next project"><div><span class="case-back">NEXT PROJECT / ${num((index+1)%projects.length+1)}</span><h2 class="display"><a href="case.html?id=${encodeURIComponent(next.key)}">${esc(next.name)} ↗</a></h2></div><a class="pill pill-light" href="index.html#work">All 12 projects ↗</a></nav>
-    </article>`;
-  }
+ const id=new URLSearchParams(location.search).get('id');
+ const project=projects.find(p=>p.key===id);
+ if(!project){
+   document.title='Project not found — Mahmoud Abdel Wahab';
+   caseRoot.innerHTML='<section class="case-intro"><h1 class="display">PROJECT NOT FOUND.</h1><p><a class="pill pill-dark" href="index.html#work">Return to all projects ↗</a></p></section>';
+ }else{
+   const info=editorial[project.key]||{};
+   const index=projects.indexOf(project);
+   const next=projects[(index+1)%projects.length];
+   document.title=project.name+' — Mahmoud Abdel Wahab';
+   const meta=document.querySelector('meta[name="description"]');
+   if(meta)meta.content=(info.summary||project.description).slice(0,155);
+   const selected=Array.isArray(info.sections)&&info.sections.length;
+   const gallery=selected?
+     info.sections.map(s=>narrativeSection(project,s)).join('')+
+     (info.process?`<details class="case-process"><summary><span>${esc(info.process.title)}</span><span class="summary-action">Explore process +</span></summary><p>${esc(info.process.intro||'')}</p><div class="case-gallery">${info.process.artworks.map(i=>artwork(project,i)).join('')}</div></details>`:''):
+     `${info.challenge||info.approach?`<section class="case-story-compact"><h2>Creative approach</h2>${info.challenge?`<p>${esc(info.challenge)}</p>`:''}${info.approach?`<p>${esc(info.approach)}</p>`:''}</section>`:''}<div class="case-gallery">${project.images.map((src,i)=>artwork(project,i)).join('')}</div>`;
+   caseRoot.innerHTML=`<article class="portfolio-case"><header class="case-hero" data-reveal><div class="case-title-wrap"><span class="eyebrow">${esc(project.tag)} / ${num(index+1)} — ${num(projects.length)}</span><h1 class="display">${esc(project.name)}</h1></div><div class="case-summary"><p>${esc(info.summary||project.description)}</p><span>${esc(info.kind||project.context)}</span></div></header><img class="case-cover" src="${esc(project.cover)}" alt="Original ${esc(project.name)} project cover" fetchpriority="high">${overview(project,info)}${gallery}<nav class="case-more" aria-label="Next project"><div><span class="case-back">NEXT PROJECT / ${num((index+1)%projects.length+1)}</span><h2 class="display"><a href="case.html?id=${encodeURIComponent(next.key)}">${esc(next.name)} ↗</a></h2></div><a class="pill pill-light" href="index.html#work">All ${projects.length} projects ↗</a></nav></article>`;
+ }
 }
 
 const menu=document.querySelector('.menu-toggle');

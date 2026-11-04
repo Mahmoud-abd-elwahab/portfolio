@@ -9,3 +9,62 @@
 @media(max-width:760px){.site-header{height:66px}.header-links{display:none;position:absolute;left:0;right:0;top:66px;background:var(--paper);color:var(--ink);padding:30px 22px 40px;flex-direction:column;align-items:flex-start;font-size:18px;gap:22px;box-shadow:0 18px 30px #0004}.header-links.is-open{display:flex}.dark-header .header-links{background:var(--ink);color:var(--white)}.menu-toggle{display:block}.mini-cv{font-size:9px}.hero{min-height:0;grid-template-columns:1fr;grid-template-rows:auto auto auto;padding:42px 22px 20px}.hero-copy{max-width:620px}.identity{margin-bottom:20px}.hero-title{font-size:clamp(65px,15vw,104px)}.hero-description{font-size:15px}.hero-visual{min-height:520px;margin-top:5px}.portrait-crop img{width:105%;left:-3%;bottom:-33%}.hero-caption{font-size:8px}.work-section,.statement,.about-section,.capabilities,.contact-section{padding-left:22px;padding-right:22px}.section-heading{margin:32px 0}.featured-grid{gap:28px 12px}.featured-grid .project-card:nth-child(n){grid-column:span 6}.archive-heading{grid-template-columns:1fr 2fr}.archive-heading p{grid-column:1/-1}.archive-grid{grid-template-columns:repeat(2,1fr)}.statement-grid{grid-template-columns:1fr}.statement-note{display:none}.about-grid{grid-template-columns:1fr}.about-portrait{height:430px;max-width:420px}.capability-grid{grid-template-columns:repeat(2,1fr)}.contact-row{align-items:flex-start}.case-hero{grid-template-columns:1fr}.case-intro{grid-template-columns:1fr}.case-content{padding-top:28px}.case-more{flex-direction:column;align-items:flex-start}}
 @media(max-width:480px){.hero-actions{align-items:flex-start;flex-direction:column;gap:14px}.hero-title{font-size:clamp(58px,17vw,77px)}.hero-title b{right:1%}.hero-visual{min-height:390px;margin-top:16px}.lime-paper{left:1%;right:1%;top:4%}.portrait-crop img{width:142%;left:-21%;bottom:-65%}.portrait-note{font-size:13px}.portrait-label{font-size:13px;padding:10px}.doodle-star{font-size:37px}.hero-caption{flex-direction:column;gap:5px}.section-heading{align-items:flex-start}.section-heading h2{font-size:clamp(48px,14vw,66px)}.section-heading .handnote{font-size:13px;margin-top:15px}.featured-grid .project-card:nth-child(n),.archive-grid{display:block}.featured-grid .project-card{grid-column:1/-1!important;margin-bottom:25px}.archive-grid .project-card{margin-bottom:25px}.archive-grid{display:block}.card-art,.archive-grid .card-art{aspect-ratio:1.32}.archive-heading{display:block}.archive-heading h3{margin:18px 0}.statement h2{font-size:clamp(42px,12vw,59px)}.about-grid h2{font-size:clamp(43px,12vw,60px)}.capability-grid{grid-template-columns:1fr}.capabilities h2{font-size:clamp(42px,11vw,58px)}.contact-section>.handnote{position:static;margin-top:30px}.contact-section h2{font-size:clamp(65px,18vw,91px)}.contact-row{flex-direction:column}.contact-row>div{align-items:flex-start;flex-direction:column}.site-footer{font-size:9px}.site-footer a:nth-child(2){display:none}.case-title-wrap h1{font-size:clamp(43px,13vw,63px)}.case-intro{padding:35px 20px}.case-gallery{gap:13px}.case-more h2{font-size:38px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}[data-reveal]{opacity:1;transform:none}.site-cursor{display:none}}
+
+/* Portfolio editorial rebuild, 04 November 2026 — original artworks untouched */
+:root{--paper:#f3efe7;--orange:#fe5237;--lime:#daf06b}
+.hero{min-height:min(800px,calc(100vh - 76px))}
+.hero-copy{max-width:940px}
+.hero-title{font-size:clamp(54px,6.6vw,110px);letter-spacing:-.065em;line-height:.93}
+.hero-title em{font-size:clamp(32px,3.4vw,54px);line-height:1.1;letter-spacing:-.03em;transform:none;margin:.20em 0 0 0;width:auto;max-width:12em}
+.hero-title em::after{display:none}
+.hero-visual{min-height:520px}
+.portrait-crop{overflow:visible}
+.portrait-crop img{width:100%;height:100%;object-fit:contain;object-position:center bottom;left:0;bottom:0}
+.portrait-note,.doodle-star{display:none}
+.card-art,.archive-grid .card-art{aspect-ratio:auto;overflow:visible;background:transparent}
+.card-art img{height:auto;max-height:none;object-fit:contain;aspect-ratio:auto}
+.card-number{top:0;left:0}
+.view-circle{inset:0}
+.project-card:hover .card-art img,.project-card:focus-visible .card-art img{filter:none;transform:none}
+.case-content{max-width:1600px}
+.portfolio-case .case-hero{margin-bottom:32px}
+.portfolio-case .case-hero .case-summary>span{font-size:11px;color:var(--lime)}
+.case-cover{display:block;width:100%;height:auto;max-height:none;object-fit:contain;margin-bottom:0}
+.case-overview{display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1fr);gap:clamp(24px,6vw,130px);padding:clamp(40px,6vw,90px) 0;border-bottom:1px solid #ffffff35}
+.case-label{display:block;color:var(--orange);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:20px}
+.case-overview-heading h2,.editorial-section-header h2{font-family:'Archivo Black',Impact,sans-serif;font-size:clamp(30px,4.5vw,65px);line-height:1;letter-spacing:-.065em;margin:0}
+.case-overview-copy>p:first-child{font-size:clamp(16px,1.5vw,22px);line-height:1.6;margin:0 0 28px;max-width:760px}
+.case-overview dl{margin:0;display:flex;gap:32px;flex-wrap:wrap}
+.case-overview dl>div{min-width:190px;max-width:400px}
+.case-overview dt{color:var(--lime);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.11em;margin:0 0 8px}
+.case-overview dd{margin:0;line-height:1.5;font-size:14px}
+.case-source{text-decoration:underline;text-underline-offset:4px}
+.case-source:hover{color:var(--orange)}
+.case-credits{font-size:13px!important;line-height:1.65!important;color:#c9c7c2;margin-top:24px!important}
+.case-credits strong{display:block;color:var(--lime);font-size:10px;text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px}
+.editorial-section{padding:70px 0 20px;border-bottom:1px solid #ffffff30}
+.editorial-section-header{display:grid;grid-template-columns:minmax(200px,.4fr) minmax(0,1fr);gap:35px}
+.editorial-section-header h2{max-width:900px}
+.section-context{display:block;font-size:13px;color:#bbb6af;line-height:1.5}
+.section-story{margin:38px 0 44px 40%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:25px}
+.section-story h3{font-size:11px;letter-spacing:.11em;color:var(--lime);text-transform:uppercase;margin:0 0 12px}
+.section-story p,.case-story-compact p{font-size:15px;line-height:1.75;color:#d3d0ca;margin:0}
+.case-gallery{max-width:1400px;margin:auto;display:flex;flex-direction:column;gap:25px}
+.case-gallery figure.case-artwork{margin:0;background:transparent}
+.case-artwork a{display:block;max-width:100%}
+.case-gallery img{width:100%;height:auto;max-height:none;object-fit:contain;display:block;margin:0 auto}
+.case-artwork figcaption{border-left:2px solid var(--orange);padding:10px 0 10px 16px;color:#d2cfc9;font-size:12px;line-height:1.5;letter-spacing:0;text-transform:none;max-width:760px}
+.case-process{margin:45px 0 75px;border:1px solid #ffffff40}
+.case-process summary{cursor:pointer;display:flex;justify-content:space-between;gap:20px;padding:20px clamp(20px,3vw,42px);font-size:17px;font-weight:700;list-style:none}
+.case-process summary::-webkit-details-marker{display:none}
+.case-process summary:hover{color:var(--lime)}
+.case-process .summary-action{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--orange)}
+.case-process[open] .summary-action{font-size:0}
+.case-process[open] .summary-action::after{content:"Close −";font-size:11px}
+.case-process>p{margin:0 35px 25px;line-height:1.6;color:#bbb6af}
+.case-process .case-gallery{padding:0 25px 30px}
+.case-story-compact{padding:35px 0 45px;max-width:800px}
+.case-story-compact h2{font-size:25px}
+.case-story-compact p{margin-bottom:13px}
+@media(max-width:760px){.hero{min-height:0}.hero-title{font-size:clamp(42px,10vw,76px)}.hero-title em{font-size:clamp(28px,6vw,44px)}.hero-visual{min-height:420px}.portrait-crop img{width:100%;height:100%;left:0;bottom:0}.case-overview,.editorial-section-header{grid-template-columns:1fr}.section-story{margin:24px 0 32px;grid-template-columns:1fr}.case-overview{padding:40px 0}.editorial-section{padding:42px 0}.case-gallery{gap:17px}}
+@media(max-width:480px){.hero-title{font-size:clamp(40px,11vw,58px)}.hero-visual{min-height:370px}.portrait-crop img{width:100%;height:100%;left:0;bottom:0}.card-art,.archive-grid .card-art{aspect-ratio:auto}.case-overview-heading h2,.editorial-section-header h2{font-size:clamp(28px,8.5vw,42px)}.case-process summary{font-size:14px}.case-artwork figcaption{font-size:11px}}
