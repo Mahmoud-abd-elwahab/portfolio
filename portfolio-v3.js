@@ -8,10 +8,10 @@ const editorial=window.PORTFOLIO_EDITORIAL||{};
 const esc=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const num=n=>String(n).padStart(2,'0');
 const titleOf=p=>editorial[p.key]?.displayName||p.name;
-const card=(project,index)=>`<a class="project-card" data-reveal href="case.html?id=${encodeURIComponent(project.key)}" aria-label="Open ${esc(titleOf(project))} project">
+const card=(project,index)=>`<a class="project-card" data-project="${esc(project.key)}" data-reveal href="case.html?id=${encodeURIComponent(project.key)}" aria-label="Open ${esc(titleOf(project))} project">
   <div class="card-art">
     <span class="card-number">${num(index+1)} / ${num(projects.length)}</span>
-    <img src="${esc(project.cover)}" alt="Original Behance cover for ${esc(project.name)}" loading="${index<4?'eager':'lazy'}" decoding="async">
+    <img src="${esc(project.key==='ai'?project.images[2]:project.cover)}" alt="${project.key==='ai'?'Selected multi-brand food artwork':'Original Behance cover for '+esc(project.name)}" loading="${index<4?'eager':'lazy'}" decoding="async">
     <span class="view-circle" aria-hidden="true"><span>VIEW<br>PROJECT ↗</span></span>
   </div>
   <div class="card-meta"><div><h3>${esc(titleOf(project))}</h3><p>${esc(project.tag)}</p></div><b aria-hidden="true">↗</b></div>
@@ -54,9 +54,10 @@ const genericGallery=(project,info)=>{
  // Ensure no source item is lost or inadvertently duplicated.
  sequence=[...new Set([...sequence,...originals])];
  const curated=Array.isArray(info.featuredIndices)?info.featuredIndices:(project.key==='devil'?[0,21,22,24,25,26,27,28]:sequence);
- const featured=[...new Set(curated)].filter(i=>sequence.includes(i)&&!hidden.has(i)).slice(0,8);
+ const representedByCaseHero=project.key==='ai'?2:null;
+ const featured=[...new Set(curated)].filter(i=>sequence.includes(i)&&!hidden.has(i)&&i!==representedByCaseHero).slice(0,8);
  const show=new Set(featured);
- const extra=sequence.filter(i=>!show.has(i));
+ const extra=sequence.filter(i=>!show.has(i)&&i!==representedByCaseHero);
  const body=`<section class="case-selected" aria-label="Selected project visuals">${info.featureIntro?`<p class="case-feature-intro">${esc(info.featureIntro)}</p>`:''}<div class="case-gallery">${featured.map(i=>artwork(project,i)).join('')}</div></section>`;
  return body+(extra.length?`<details class="case-process case-source-gallery"><summary><span>Complete source gallery <small>(${extra.length} additional boards)</small></span><span class="summary-action">Explore all +</span></summary><p>Additional project boards are preserved in their source order. They include alternate executions, presentation details and process documentation.</p><div class="case-gallery">${extra.map(i=>artwork(project,i)).join('')}</div></details>`:'' );
 };
@@ -74,12 +75,14 @@ if(caseRoot){
    document.title=titleOf(project)+' — Mahmoud Abdel Wahab';
    const meta=document.querySelector('meta[name="description"]');
    if(meta)meta.content=(info.summary||project.description).slice(0,155);
+   const heroSrc=project.key==='ai'?project.images[2]:project.cover;
+   const heroAlt=project.key==='ai'?'Selected food advertising artwork from the multi-brand collection':'Original '+project.name+' project cover';
    const selected=Array.isArray(info.sections)&&info.sections.length;
    const gallery=selected?
      info.sections.map(s=>narrativeSection(project,s)).join('')+
      (info.process?`<details class="case-process"><summary><span>${esc(info.process.title)}</span><span class="summary-action">Explore process +</span></summary><p>${esc(info.process.intro||'')}</p><div class="case-gallery">${info.process.artworks.map(i=>artwork(project,i)).join('')}</div></details>`:''):
      `${info.challenge||info.approach?`<section class="case-story-compact"><h2>Creative approach</h2>${info.challenge?`<p>${esc(info.challenge)}</p>`:''}${info.approach?`<p>${esc(info.approach)}</p>`:''}</section>`:''}${genericGallery(project,info)}`;
-   caseRoot.innerHTML=`<article class="portfolio-case"><header class="case-hero" data-reveal><div class="case-title-wrap"><span class="eyebrow">${esc(project.tag)} / ${num(index+1)} — ${num(projects.length)}</span><h1 class="display">${esc(titleOf(project))}</h1></div><div class="case-summary"><p>${esc(info.kind||project.discipline)}</p><span>Original key visuals and case context ↓</span></div></header><img class="case-cover" src="${esc(project.cover)}" alt="Original ${esc(project.name)} project cover" fetchpriority="high">${overview(project,info)}${gallery}<nav class="case-more" aria-label="Next project"><div><span class="case-back">NEXT PROJECT / ${num((index+1)%projects.length+1)}</span><h2 class="display"><a href="case.html?id=${encodeURIComponent(next.key)}">${esc(titleOf(next))} ↗</a></h2></div><a class="pill pill-light" href="index.html#work">All ${projects.length} projects ↗</a></nav></article>`;
+   caseRoot.innerHTML=`<article class="portfolio-case"><header class="case-hero" data-reveal><div class="case-title-wrap"><span class="eyebrow">${esc(project.tag)} / ${num(index+1)} — ${num(projects.length)}</span><h1 class="display">${esc(titleOf(project))}</h1></div><div class="case-summary"><p>${esc(info.kind||project.discipline)}</p><span>Selected artwork and case context ↓</span></div></header><img class="case-cover" src="${esc(heroSrc)}" alt="${esc(heroAlt)}" fetchpriority="high">${overview(project,info)}${gallery}<nav class="case-more" aria-label="Next project"><div><span class="case-back">NEXT PROJECT / ${num((index+1)%projects.length+1)}</span><h2 class="display"><a href="case.html?id=${encodeURIComponent(next.key)}">${esc(titleOf(next))} ↗</a></h2></div><a class="pill pill-light" href="index.html#work">All ${projects.length} projects ↗</a></nav></article>`;
  }
 }
 
