@@ -75,6 +75,10 @@ test('Case navigation: all twelve deep links, no runtime errors, valid original 
   await expect(page.locator('.portfolio-case h1')).toBeVisible();
   await expect.poll(()=>page.locator('.case-cover').evaluate(el=>el.complete&&el.naturalWidth>0)).toBeTruthy();
   await expect(page.locator('.case-overview')).toBeVisible();
+  const firstArtwork=page.locator('.case-artwork img').first();
+  await firstArtwork.scrollIntoViewIfNeeded();
+  await expect.poll(()=>firstArtwork.evaluate(el=>el.complete&&el.naturalWidth>0),{timeout:20000}).toBeTruthy();
+  expect(await firstArtwork.evaluate(el=>el.getBoundingClientRect().height)).toBeGreaterThan(80);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2)).toBeTruthy();
  }
  expect(errors).toEqual([]);
@@ -122,6 +126,8 @@ test('Hiring gate: verify the actual first fold and source-grounded editorial se
  await expect(sections.nth(0).locator('.case-stage')).toContainText('Campaign typography');
  await expect(sections.nth(1).locator('.case-stage')).toContainText('Visual development');
  await expect(sections.nth(2).locator('.case-stage')).toContainText('Final visual executions');
+ await expect(sections.nth(0).locator('.case-stage-eyebrow')).toHaveText('TYPOGRAPHY');
+ await expect(sections.nth(2).locator('.case-stage-eyebrow')).toHaveText('FINAL EXECUTIONS');
  const typeSrc=await sections.nth(0).locator('.case-artwork img').evaluateAll(els=>els.map(el=>el.getAttribute('src')));
  expect(typeSrc).toHaveLength(3);
  expect(typeSrc[0]).toContain('c11c6a7d33ac4f8b');
@@ -130,6 +136,10 @@ test('Hiring gate: verify the actual first fold and source-grounded editorial se
  for(const [step,section] of ['typography','development','executions'].map((label,i)=>[label,sections.nth(i)])){
   await section.locator('.case-stage').scrollIntoViewIfNeeded();
   await page.screenshot({path:`test-results/worldcup-${step}-${testInfo.project.name}.png`,fullPage:false,animations:'disabled'});
+  const firstImage=section.locator('.case-artwork img').first();
+  await firstImage.scrollIntoViewIfNeeded();
+  await expect.poll(()=>firstImage.evaluate(el=>el.complete&&el.naturalWidth>0),{timeout:20000}).toBeTruthy();
+  await page.screenshot({path:`test-results/worldcup-${step}-artwork-${testInfo.project.name}.png`,fullPage:false,animations:'disabled'});
  }
  await page.goto('/case.html?id=saudi');
  await expect(page.locator('.case-cover')).toHaveAttribute('src',/3ec16f8c4ffd9826\.webp/);
