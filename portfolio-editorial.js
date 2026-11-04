@@ -63,7 +63,7 @@ window.PORTFOLIO_EDITORIAL = {
   saudi: {
     kind: 'Agency social media work · Servix Marketing',
     omittedEditorialBoards: [1,15],
-    featuredIndices: [0,6,7,10,11],
+    featuredIndices: [4,6,7,10,11],
     summary: 'Social media visuals communicating meal plans, prepared food and delivery through distinct daily-life situations.',
     credits: 'Creative Visual Designer — social media visual design for Servix Marketing.',
     challenge: 'Communicate the meal-plan service clearly across multiple social media messages.',
@@ -85,7 +85,7 @@ window.PORTFOLIO_EDITORIAL = {
     credits: 'Creative Visual Designer — as credited in the original published project. These are portfolio executions; media placement is not documented.',
     challenge: 'Celebrate Jordan’s football milestone while making the uWallet cashback proposition recognizable across different match-day messages.',
     approach: 'The large uWallet card anchors the product inside a Jordanian supporter scene. Match-day adaptations introduce offer and football information, while typography and composition studies document the alternatives before the developed executions.',
-    omittedEditorialBoards: [1],
+    omittedEditorialBoards: [1,5], // Board 5 is byte-identical to board 0. Original files remain in GitHub.
     sections: [
       {
         title: '01 / Typography explorations',
@@ -122,7 +122,6 @@ window.PORTFOLIO_EDITORIAL = {
         sequence: [
           {type:'stage',title:'Final visual executions',description:'Finished-looking portfolio artwork and selected adaptations follow the type and art-direction studies. This label describes execution quality, not a confirmed client approval.'},
           {type:'image',index:0},
-          {type:'image',index:5},
           {type:'image',index:7},
           {type:'image',index:8},
           {type:'image',index:10},
