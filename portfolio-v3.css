@@ -146,3 +146,15 @@
  .work-section{padding-top:44px}
 }
 @media(max-width:480px){.hero .hero-visual{min-height:320px}}
+
+/* Secondary archive: preserve complete access without letting older work dilute hiring positioning. */
+.archive-more{border-top:1px solid #25232260;margin-top:clamp(35px,5vw,70px);padding-top:25px}
+.archive-more summary{list-style:none;cursor:pointer;display:flex;gap:24px;align-items:center;justify-content:space-between;padding:8px 0 20px;font-family:'Archivo Black',Impact,sans-serif;font-size:clamp(19px,2vw,28px);letter-spacing:-.05em}
+.archive-more summary::-webkit-details-marker{display:none}
+.archive-more summary:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
+.archive-more-label{font-family:'DM Sans',Arial,sans-serif;font-size:10px;letter-spacing:.1em;font-weight:700;text-transform:uppercase}
+.archive-more[open] .archive-more-label{font-size:0}
+.archive-more[open] .archive-more-label::after{content:'Close −';font-size:10px}
+.archive-more>p{font-size:13px;max-width:560px;line-height:1.6;color:var(--muted);margin:0 0 35px}
+.archive-more .archive-grid{padding-bottom:25px}
+@media(max-width:480px){.archive-more summary{align-items:flex-start;flex-direction:column;gap:10px}}
