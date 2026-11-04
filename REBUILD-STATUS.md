@@ -10,7 +10,7 @@ Decision-first revision of the 24 October reference. This is an editorial and fr
 - Distinguish verified projects and personal explorations; never invent results or campaign leadership.
 - Present Uwallet Campaigns as two separately credited directions. Text-only boards 2 and 12 are replaced by editable website prose; no source asset deleted.
 - Group the creative routes into legible case chapters, retaining original imagery. Reference/process imagery is available under an expandable archive.
-- Source-confirmed text-only description boards are now omitted as raster images for Uwallet, Saudi Royal Nutrition, Uwallet World Cup, Uwallet-2, Big Chips, and Olivewood; the factual information is represented as HTML content.
+- Source-confirmed text-only boards are now omitted as raster images for Uwallet, Saudi Royal Nutrition, Uwallet World Cup, Uwallet-2, Big Chips, Olivewood, The Devil's Palace, the unofficial food studies, and the automotive exploration; the factual information is represented as HTML content.
 - Remaining cases retain their image stream pending full visual classification; this audit is not complete.
 - Preserve original Arabic copy, brand marks, and layout inside actual advertising artwork.
 - Original published Behance links remain cited in each on-site project.
