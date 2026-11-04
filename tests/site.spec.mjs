@@ -115,6 +115,7 @@ test('Hiring gate: verify the actual first fold and source-grounded editorial se
  else expect(workImageTop).toBeLessThan(viewport.height*1.5);
  const multiCard=page.locator('[data-project="ai"] img');
  await expect(multiCard).toHaveAttribute('src',/1eafe7f7e9b0b5d1\.webp/);
+ await expect(page.locator('[data-project="saudi"] img')).toHaveAttribute('src',/3ec16f8c4ffd9826\.webp/);
  await page.goto('/case.html?id=uwallet-world-cup');
  const sections=page.locator('.editorial-section');
  await expect(sections).toHaveCount(3);
@@ -130,6 +131,9 @@ test('Hiring gate: verify the actual first fold and source-grounded editorial se
   await section.locator('.case-stage').scrollIntoViewIfNeeded();
   await page.screenshot({path:`test-results/worldcup-${step}-${testInfo.project.name}.png`,fullPage:false,animations:'disabled'});
  }
+ await page.goto('/case.html?id=saudi');
+ await expect(page.locator('.case-cover')).toHaveAttribute('src',/3ec16f8c4ffd9826\.webp/);
+ expect(await page.locator('.case-artwork img[src*="3ec16f8c4ffd9826"]').count()).toBe(0);
  await page.goto('/case.html?id=ai');
  await expect(page.locator('.case-cover')).toHaveAttribute('src',/1eafe7f7e9b0b5d1\.webp/);
  expect(await page.locator('.case-artwork img[src*="1eafe7f7e9b0b5d1"]').count()).toBe(0);
