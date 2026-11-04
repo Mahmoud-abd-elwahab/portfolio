@@ -103,3 +103,33 @@ test('Visual hiring gate: capture all twelve case openings on desktop and mobile
   await page.screenshot({path:`test-results/case-opening-${id}-${testInfo.project.name}.png`,fullPage:false,animations:'disabled'});
  }
 });
+
+
+test('Hiring gate: verify the actual first fold and source-grounded editorial sequencing',async({page},testInfo)=>{
+ await page.goto('/');
+ const firstImage=page.locator('#featured-projects .project-card img').first();
+ await expect.poll(()=>firstImage.evaluate(el=>el.complete&&el.naturalWidth>0)).toBeTruthy();
+ const workImageTop=await firstImage.evaluate(el=>el.getBoundingClientRect().top);
+ const viewport=page.viewportSize();
+ if(viewport.width>=1081)expect(workImageTop).toBeLessThan(viewport.height+75);
+ else expect(workImageTop).toBeLessThan(viewport.height*1.5);
+ const multiCard=page.locator('[data-project="ai"] img');
+ await expect(multiCard).toHaveAttribute('src',/1eafe7f7e9b0b5d1\.webp/);
+ await page.goto('/case.html?id=uwallet-world-cup');
+ const sections=page.locator('.editorial-section');
+ await expect(sections).toHaveCount(3);
+ await expect(sections.nth(0).locator('.case-stage')).toContainText('Campaign typography');
+ await expect(sections.nth(1).locator('.case-stage')).toContainText('Visual development');
+ await expect(sections.nth(2).locator('.case-stage')).toContainText('Final visual executions');
+ const typeSrc=await sections.nth(0).locator('.case-artwork img').evaluateAll(els=>els.map(el=>el.getAttribute('src')));
+ expect(typeSrc).toHaveLength(3);
+ expect(typeSrc[0]).toContain('c11c6a7d33ac4f8b');
+ expect(typeSrc[1]).toContain('24c7a19d9d50eab1');
+ expect(typeSrc[2]).toContain('e69110d04db8b64c');
+ await page.screenshot({path:`test-results/worldcup-sequence-${testInfo.project.name}.png`,fullPage:true,animations:'disabled'});
+ await page.goto('/case.html?id=ai');
+ await expect(page.locator('.case-cover')).toHaveAttribute('src',/1eafe7f7e9b0b5d1\.webp/);
+ expect(await page.locator('.case-artwork img[src*="1eafe7f7e9b0b5d1"]').count()).toBe(0);
+ await expect(page.locator('.case-selected .case-artwork')).toHaveCount(3);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2)).toBeTruthy();
+});
