@@ -3,14 +3,14 @@ window.PORTFOLIO_EDITORIAL = {
   uwallet: {
     kind: 'Agency campaign development + independent exploration',
     summary: 'Two distinct uWallet creative routes: a digital entertainment campaign developed at leoden dentsu, and an independent Back to School concept based on an existing brand brief.',
-    credits: 'Digital Entertainment: concept development, visual composition and final artwork; existing brand typography. Back to School: independent concept and visual execution. No performance results claimed.',
+    credits: 'Digital Entertainment: concept development, visual composition and final artwork, using uWallet’s established brand typography. Back to School: independent concept and visual execution based on an existing brief.',
     sections: [
       {
         title: '01 / Digital Entertainment',
         eyebrow: 'Agency work · leoden dentsu',
         lead: 'Making digital entertainment offers visible',
         challenge: 'Communicate uWallet’s e-voucher offers across entertainment and online shopping without losing the payment service at the centre.',
-        approach: 'The direction uses the phone as the main product cue, bringing gaming, digital gift cards and entertainment references together. The exploration tests price-led, multi-category and challenge-led approaches before simplifying the final composition for a clearer first read.',
+        approach: 'The phone keeps uWallet’s payment role visible, while gaming and digital gift-card cues show the kinds of offers available. Earlier price-led and multi-category layouts were narrowed into a clearer phone-first composition.',
         sequence: [
           {type:'stage', title:'Campaign typography', description:'Campaign lettering and promotional lock-ups are introduced before their use in the visuals. These designs work within uWallet’s existing brand identity.'},
           {type:'image', index:3},
@@ -63,9 +63,9 @@ window.PORTFOLIO_EDITORIAL = {
   saudi: {
     kind: 'Agency social media work · Servix Marketing',
     omittedEditorialBoards: [1,15],
-    featuredIndices: [0,4,6,7,10,11,12],
+    featuredIndices: [0,6,7,10,11],
     summary: 'Social media visuals communicating meal plans, prepared food and delivery through distinct daily-life situations.',
-    credits: 'Creative Visual Designer — social media visual design. No sole campaign-strategy or performance claim.',
+    credits: 'Creative Visual Designer — social media visual design for Servix Marketing.',
     challenge: 'Communicate the meal-plan service clearly across multiple social media messages.',
     approach: 'Daily routines and food-focused compositions provide variety while preserving a consistent brand treatment.'
   },
@@ -82,9 +82,9 @@ window.PORTFOLIO_EDITORIAL = {
     kind: 'Agency creative visuals · leoden dentsu',
     displayName: 'uWallet — World Cup 2026',
     summary: 'A social-first World Cup campaign exploration for uWallet, connecting cashback communication with Jordan’s first World Cup qualification.',
-    credits: 'Creative Visual Designer — credited in the original published project board. Portfolio selections are not proof of a live campaign rollout or performance.',
+    credits: 'Creative Visual Designer — as credited in the original published project. These are portfolio executions; media placement is not documented.',
     challenge: 'Celebrate Jordan’s football milestone while making the uWallet cashback proposition recognizable across different match-day messages.',
-    approach: 'Three visual directions were explored: brand celebration, match-day emotion and product-led tournament communication. The typography and visual studies are shown before developed execution examples.',
+    approach: 'The large uWallet card anchors the product inside a Jordanian supporter scene. Match-day adaptations introduce offer and football information, while typography and composition studies document the alternatives before the developed executions.',
     omittedEditorialBoards: [1],
     sections: [
       {
@@ -142,7 +142,17 @@ window.PORTFOLIO_EDITORIAL = {
     approach: 'The executions focus on identifiable product cues and varied campaign scenarios while working within uWallet’s visual identity.',
     omittedEditorialBoards: [1]
   },
-  olivewood: {displayName:'Olivewood Studios',kind:'Film production studio promotional visuals',summary:'Visual concepts presenting Jordan as a film-production backdrop for Olivewood Studios.',credits:'Specific agency and individual role ownership have not been verified in the existing source audit.',challenge:'Introduce the studio and its production setting visually.',approach:'The showcased artworks connect Jordanian environments with cinematic framing and studio messaging.',featuredIndices:[1,3,4,5,6,7,8,9],omittedEditorialBoards:[0,2]},
+  olivewood: {
+    displayName: 'Olivewood Studios',
+    kind: 'Film production campaign key visuals',
+    summary: 'Campaign visuals that place Olivewood Studios alongside Jordanian landscapes, using the country itself as a proposed filming backdrop.',
+    credits: 'Graphic Designer — executed campaign key visuals from an approved concept and brand direction, in collaboration with an Art Director (as stated in the original project credit board).',
+    challenge: 'Make the studio offering recognizable while presenting Jordan’s varied filming locations.',
+    approach: 'The studio architecture is composited into distinct Jordanian environments. The repeated headline, logo and booking prompt keep the production message consistent as the locations change.',
+    featureIntro: 'Selected executions first: the same studio offer moves between Jordanian locations. Original location references and visual-development comparisons remain in the expandable source gallery.',
+    featuredIndices: [7,8,9,10,11],
+    omittedEditorialBoards: [0,2,3,4,5,13,14,15]
+  },
   'big-chips': {displayName:'Big Chips — Packaging & Social',kind:'Independent food packaging and social design study',summary:'Packaging refresh concepts and product-led social media visuals for Big Chips, an Egyptian snack brand.',credits:'Proposed packaging and social media study; commissioning and commercial results have not been verified.',approach:'Flavour-led colour systems distinguish the product range, followed by product compositions and social applications.',featuredIndices:[2,3,6,8,9,10,11,12],omittedEditorialBoards:[0,1,7]},
   food: {displayName:'Food Social Visual Studies',kind:'Independent food social design studies',summary:'Unofficial food and beverage design studies using recognizable Egyptian product categories.',credits:'Uncommissioned / unofficial concept work, as labelled in the original project boards. Brand endorsement or release is not asserted.',featuredIndices:[2,3,4,5,6,7,8,9],omittedEditorialBoards:[0,1]},
   ai: {kind:'Selected multi-brand visual work',displayName:'Multi-brand — Social Visual Explorations',summary:'Selected AI-assisted promotional and social artwork spanning food, community, retail and service communication. This is a collection, not a single brand identity project.',credits:'Individual scopes and client approvals are not consistently documented for this mixed collection. The separate Devil’s Palace case is not counted here.',featuredIndices:[2,10,11,15],omittedEditorialBoards:[0,1,3,4,5,6,7,8,9]},
