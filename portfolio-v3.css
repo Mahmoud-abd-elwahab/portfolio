@@ -202,3 +202,23 @@
 /* Let native aspect ratios take over on load, with a placeholder ratio before lazy image decode.
    A zero-height lazy image can otherwise hide its artwork below a section heading. */
 .case-artwork img{aspect-ratio:auto 16 / 9}
+
+/* Hiring polish: put real work earlier on narrow screens without cropping artwork. */
+@media (max-width:760px){
+  .hero{padding-top:17px;padding-bottom:12px}
+  .hero .hero-visual{min-height:190px;height:190px;max-width:300px;width:100%;margin:6px auto 0}
+  .hero .portrait-label{font-size:11px;padding:8px 10px;bottom:4%}
+  .hero-description{margin-top:12px}
+  .hero-actions{margin-top:14px}
+  .hero-caption{margin-top:2px;padding-top:11px}
+  .work-section{padding-top:15px}
+  .section-heading{display:block;margin:16px 0 19px}
+  .section-heading h2{font-size:clamp(42px,10.8vw,64px);line-height:.94}
+  .section-heading .handnote{font-size:13px;transform:none;margin:9px 0 0}
+  .case-overview dt,.case-credits strong{font-size:12px}
+  .case-credits{font-size:14px!important}
+}
+@media (max-width:480px){
+  .hero .hero-visual{min-height:175px;height:175px;max-width:270px}
+  .section-heading .handnote{display:none}
+}
