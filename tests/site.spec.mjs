@@ -126,7 +126,10 @@ test('Hiring gate: verify the actual first fold and source-grounded editorial se
  expect(typeSrc[0]).toContain('c11c6a7d33ac4f8b');
  expect(typeSrc[1]).toContain('24c7a19d9d50eab1');
  expect(typeSrc[2]).toContain('e69110d04db8b64c');
- await page.screenshot({path:`test-results/worldcup-sequence-${testInfo.project.name}.png`,fullPage:true,animations:'disabled'});
+ for(const [step,section] of ['typography','development','executions'].map((label,i)=>[label,sections.nth(i)])){
+  await section.locator('.case-stage').scrollIntoViewIfNeeded();
+  await page.screenshot({path:`test-results/worldcup-${step}-${testInfo.project.name}.png`,fullPage:false,animations:'disabled'});
+ }
  await page.goto('/case.html?id=ai');
  await expect(page.locator('.case-cover')).toHaveAttribute('src',/1eafe7f7e9b0b5d1\.webp/);
  expect(await page.locator('.case-artwork img[src*="1eafe7f7e9b0b5d1"]').count()).toBe(0);
