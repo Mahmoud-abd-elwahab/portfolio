@@ -36,12 +36,12 @@ assert(b.findIndex(x=>x.type==='image'&&x.index===13)<b.findIndex(x=>x.type==='i
 
 const wc=meta['uwallet-world-cup'];
 assert.equal(wc.sections.length,3,'World Cup must separate type, visual development, and executions.');
-const wcOrder=wc.sections.flatMap(section=>section.sequence.filter(x=>x.type==='image').map(x=>x.index));
+const wcOrder=Array.from(wc.sections,section=>Array.from(section.sequence).filter(x=>x.type==='image').map(x=>x.index)).flat();
 const wcType=[2,6,12],wcDevelopment=[3,4,9],wcExecution=[0,5,7,8,10,11,13,14];
 assert.deepEqual(wcOrder.slice(0,3),wcType,'All three World Cup typography boards must appear first.');
 assert.deepEqual(wcOrder.slice(3,6),wcDevelopment,'World Cup composition studies must precede execution.');
 assert.deepEqual(wcOrder.slice(6),wcExecution,'World Cup execution group must remain complete and source-grounded.');
-assert.deepEqual(meta.ai.featuredIndices,[2,10,11,15],'Multi-brand front gallery cannot reintroduce uncurated automotive/retail work.');
+assert.deepEqual(Array.from(meta.ai.featuredIndices),[2,10,11,15],'Multi-brand front gallery cannot reintroduce uncurated automotive/retail work.');
 
 const index=read('index.html'),c=read('case.html'),js=read('portfolio-v3.js'),css=read('portfolio-v3.css');
 assert(index.includes('portfolio-editorial.js?v=6')&&c.includes('portfolio-editorial.js?v=6'));
