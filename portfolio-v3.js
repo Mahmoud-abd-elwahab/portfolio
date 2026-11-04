@@ -51,7 +51,8 @@ const genericGallery=(project,info)=>{
  let sequence=Array.isArray(info.featureSequence)?info.featureSequence.filter(i=>originals.includes(i)):[...originals];
  // Ensure no source item is lost or inadvertently duplicated.
  sequence=[...new Set([...sequence,...originals])];
- const featured=(project.key==='devil'?[0,21,22,24,25,26,27,28]:sequence).filter(i=>sequence.includes(i)&&!hidden.has(i)).slice(0,8);
+ const curated=Array.isArray(info.featuredIndices)?info.featuredIndices:(project.key==='devil'?[0,21,22,24,25,26,27,28]:sequence);
+ const featured=[...new Set(curated)].filter(i=>sequence.includes(i)&&!hidden.has(i)).slice(0,8);
  const show=new Set(featured);
  const extra=sequence.filter(i=>!show.has(i));
  const body=`<section class="case-selected" aria-label="Selected project visuals">${info.featureIntro?`<p class="case-feature-intro">${esc(info.featureIntro)}</p>`:''}<div class="case-gallery">${featured.map(i=>artwork(project,i)).join('')}</div></section>`;
