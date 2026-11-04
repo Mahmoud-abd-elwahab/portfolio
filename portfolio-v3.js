@@ -28,14 +28,17 @@ const artwork=(project,index,caption='')=>{
   const src=project.images[index];
   if(!src)return '';
   const alt=caption||project.name+' — artwork '+(index+1);
-  return `<figure class="case-artwork" data-reveal><a href="${esc(src)}" data-lightbox aria-label="View artwork ${index+1}: ${esc(project.name)}"><img src="${esc(src)}" alt="${esc(alt)}" loading="lazy" decoding="async"></a>${caption?`<figcaption>${esc(caption)}</figcaption>`:''}</figure>`;
+  return `<figure class="case-artwork" data-reveal><a href="${esc(src)}" data-lightbox aria-label="View artwork ${index+1}: ${esc(project.name)}"><img src="${esc(src)}" alt="${esc(alt)}" loading="${(project.key==='uwallet-world-cup'&&[2,3,0].includes(index))||(project.key==='uwallet'&&[3,13].includes(index))?'eager':'lazy'}" decoding="async"></a>${caption?`<figcaption>${esc(caption)}</figcaption>`:''}</figure>`;
 };
 const overview=(project,info)=>{
   const facts=[['Project type',info.kind||project.discipline],['Source',`<a class="case-source" href="${esc(project.source)}" rel="noopener noreferrer" target="_blank">Original Behance project ↗</a>`]];
   return `<div class="case-overview"><div class="case-overview-heading"><span class="case-label">PROJECT CONTEXT</span><h2>The brief.<br>The work.</h2></div><div class="case-overview-copy"><p>${esc(info.summary||project.description)}</p><dl>${facts.map(([k,v])=>`<div><dt>${esc(k)}</dt><dd>${v}</dd></div>`).join('')}</dl>${info.credits?`<p class="case-credits"><strong>Contribution &amp; attribution</strong>${esc(info.credits)}</p>`:''}</div></div>`;
 };
 const sequenceArt=(project,part,captions={})=>{
- if(part.type==='stage')return `<div class="case-stage" data-reveal><span class="case-stage-eyebrow">VISUAL DEVELOPMENT</span><h3>${esc(part.title)}</h3>${part.description?`<p>${esc(part.description)}</p>`:''}</div>`;
+ if(part.type==='stage'){
+  const phase=part.phase||(/typography/i.test(part.title)?'TYPOGRAPHY':/final|applications/i.test(part.title)?'FINAL EXECUTIONS':'VISUAL DEVELOPMENT');
+  return `<div class="case-stage" data-reveal><span class="case-stage-eyebrow">${esc(phase)}</span><h3>${esc(part.title)}</h3>${part.description?`<p>${esc(part.description)}</p>`:''}</div>`;
+ }
  if(part.type==='image')return artwork(project,part.index,captions[part.index]||'');
  return '';
 };
