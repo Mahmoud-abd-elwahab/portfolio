@@ -19,7 +19,9 @@ const card=(project,index)=>`<a class="project-card" data-reveal href="case.html
 const featured=document.getElementById('featured-projects');
 const archive=document.getElementById('archive-projects');
 if(featured)featured.innerHTML=projects.slice(0,4).map(card).join('');
-if(archive)archive.innerHTML=projects.slice(4).map((p,i)=>card(p,i+4)).join('');
+if(archive)archive.innerHTML=projects.slice(4,9).map((p,i)=>card(p,i+4)).join('');
+const earlier=document.getElementById('secondary-projects');
+if(earlier)earlier.innerHTML=projects.slice(9).map((p,i)=>card(p,i+9)).join('');
 
 const caseRoot=document.getElementById('case-root');
 const artwork=(project,index,caption='')=>{
