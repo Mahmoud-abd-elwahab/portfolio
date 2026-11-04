@@ -93,3 +93,13 @@ test('Lightbox: keyboard closure, focus restoration and reduced-motion support',
  await expect.poll(()=>page.locator('.hero-title').count()).toBe(0);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2)).toBeTruthy();
 });
+
+test('Visual hiring gate: capture all twelve case openings on desktop and mobile',async({page},testInfo)=>{
+ for(const id of ids){
+  await page.goto('/case.html?id='+id);
+  await expect(page.locator('.portfolio-case h1')).toBeVisible();
+  const cover=page.locator('.case-cover');
+  await expect.poll(()=>cover.evaluate(el=>el.complete&&el.naturalWidth>0),{timeout:20000}).toBeTruthy();
+  await page.screenshot({path:`test-results/case-opening-${id}-${testInfo.project.name}.png`,fullPage:false,animations:'disabled'});
+ }
+});
