@@ -22,8 +22,14 @@ jobs:
         run: node tests/static-audit.cjs
       - name: Install browser test runner
         run: npm install --no-save @playwright/test
-      - name: Install Chromium
-        run: npx playwright install --with-deps chromium
+      - name: Use preinstalled browser or install Chromium fallback
+        run: |
+          if command -v google-chrome >/dev/null 2>&1; then
+            google-chrome --version
+            echo "CHROME_CHANNEL=chrome" >> "$GITHUB_ENV"
+          else
+            npx playwright install chromium
+          fi
       - name: Desktop, tablet and mobile QA
         run: npx playwright test --reporter=line
       - name: Save screenshots on every run
