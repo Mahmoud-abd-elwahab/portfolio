@@ -91,7 +91,7 @@ if(!reduced)requestAnimationFrame(()=>document.documentElement.classList.add('mo
 const revealObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(entry=>{
  if(entry.isIntersecting){
   const node=entry.target;
-  if(!reduced&&node.animate&&node.closest('.hero')===null){
+  if(!reduced&&node.animate&&node.matches('.project-card, .case-artwork, .about-portrait')){
    node.animate([{opacity:.62,transform:'translate3d(0,16px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}],{duration:550,easing:'cubic-bezier(.16,1,.3,1)'});
   }
   node.classList.add('is-visible');
