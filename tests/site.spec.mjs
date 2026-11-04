@@ -15,11 +15,16 @@ test('Homepage: positioning, complete covers, source aspect ratios, responsive l
  await expect(img).toBeVisible();
  await expect.poll(()=>img.evaluate(el=>el.complete&&el.naturalWidth>0)).toBeTruthy();
  // Simulate an actual reader scrolling the full collection; verify every lazy image.
+ const oldWork=page.locator('#earlier-works');
+ await oldWork.locator('summary').click();
+ await expect(oldWork).toHaveAttribute('open','');
  const cardImages=await page.locator('.project-card img').all();
  for(const cardImage of cardImages){
   await cardImage.scrollIntoViewIfNeeded();
   await expect.poll(()=>cardImage.evaluate(el=>el.complete&&el.naturalWidth>0),{timeout:20000}).toBeTruthy();
  }
+ await oldWork.locator('summary').click();
+ await expect(oldWork).not.toHaveAttribute('open','');
  await page.evaluate(()=>window.scrollTo(0,0));
  expect(errors).toEqual([]);
  await page.screenshot({path:`test-results/home-${testInfo.project.name}.png`,fullPage:true,animations:'disabled'});
