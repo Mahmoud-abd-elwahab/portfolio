@@ -150,3 +150,26 @@ test('Hiring gate: verify the actual first fold and source-grounded editorial se
  await expect(page.locator('.case-selected .case-artwork')).toHaveCount(3);
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2)).toBeTruthy();
 });
+
+test('Agency hiring polish: visible work and Olivewood source fidelity',async({page},testInfo)=>{
+ await page.goto('/');
+ await expect(page.locator('#contact-title')).toContainText('HIRING A');
+ await expect(page.locator('.contact-row')).toContainText('advertising agencies');
+ const first=page.locator('#featured-projects .project-card img').first();
+ await expect.poll(()=>first.evaluate(img=>img.complete&&img.naturalWidth>0)).toBeTruthy();
+ const viewport=page.viewportSize();
+ if(viewport.width<=480){
+  const artworkTop=await first.evaluate(img=>img.getBoundingClientRect().top);
+  expect(artworkTop).toBeLessThan(viewport.height*1.2);
+ }
+ await page.goto('/case.html?id=olivewood');
+ await expect(page.locator('.case-credits')).toContainText('Art Director');
+ await expect(page.locator('.case-selected .case-artwork')).toHaveCount(5);
+ const actual=await page.locator('.case-selected img').evaluateAll(imgs=>imgs.map(img=>img.getAttribute('src')));
+ const expected=await page.evaluate(()=>[7,8,9,10,11].map(i=>window.PORTFOLIO_PROJECTS.find(p=>p.key==='olivewood').images[i]));
+ expect(actual).toEqual(expected);
+ const excluded=await page.evaluate(()=>[3,4,5,13,14,15].map(i=>window.PORTFOLIO_PROJECTS.find(p=>p.key==='olivewood').images[i]));
+ const displayed=await page.locator('.case-artwork img').evaluateAll(imgs=>imgs.map(img=>img.getAttribute('src')));
+ for(const src of excluded)expect(displayed).not.toContain(src);
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth+2)).toBeTruthy();
+});
