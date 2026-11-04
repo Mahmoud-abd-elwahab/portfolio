@@ -44,7 +44,18 @@ assert.deepEqual(wcOrder.slice(6),wcExecution,'World Cup execution group must re
 assert.deepEqual(Array.from(meta.ai.featuredIndices),[2,10,11,15],'Multi-brand front gallery cannot reintroduce uncurated automotive/retail work.');
 
 const index=read('index.html'),c=read('case.html'),js=read('portfolio-v3.js'),css=read('portfolio-v3.css');
-assert(index.includes('portfolio-editorial.js?v=6')&&c.includes('portfolio-editorial.js?v=6'));
+const assetVersion=index.match(/portfolio-editorial\\.js\\?v=(\\d+)/)?.[1];
+assert(assetVersion,'Homepage must expose a cache-busted editorial asset.');
+for(const html of [index,c]){
+ for(const asset of ['portfolio-editorial.js','portfolio-v3.js','portfolio-v3.css'])
+  assert(html.includes(asset+'?v='+assetVersion),'All pages must share the same asset revision: '+asset);
+}
+const olive=meta.olivewood;
+assert.deepEqual(Array.from(olive.featuredIndices),[7,8,9,10,11],'Olivewood must lead with five actual KV executions.');
+for(const i of [3,4,5,13,14,15])
+ assert(olive.omittedEditorialBoards.includes(i),'Olivewood text board '+i+' must not be rendered as portfolio artwork.');
+assert(olive.credits.includes('Art Director'),'Olivewood HTML attribution must reflect its original collaboration board.');
+assert(index.includes('HIRING A<br>GRAPHIC<br>DESIGNER'),'Contact section should address agency recruitment.');
 assert(js.includes('motion-ready')&&css.includes('portfolio-headline-arrive'),'Expected actual controlled site motion.');
 assert(css.includes('prefers-reduced-motion:reduce'),'Reduced motion styles must exist.');
 for(const f of ['portfolio-v3.js','portfolio-editorial.js','portfolio-data.js'])new (require('node:vm').Script)(read(f),{filename:f});
