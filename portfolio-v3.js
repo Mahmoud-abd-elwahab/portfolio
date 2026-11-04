@@ -88,7 +88,16 @@ nav?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{menu
 
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 if(!reduced)requestAnimationFrame(()=>document.documentElement.classList.add('motion-ready'));
-const revealObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');revealObserver.unobserve(entry.target)}}),{rootMargin:'0px 0px -50px',threshold:.04}):null;
+const revealObserver='IntersectionObserver' in window?new IntersectionObserver(entries=>entries.forEach(entry=>{
+ if(entry.isIntersecting){
+  const node=entry.target;
+  if(!reduced&&node.animate&&node.closest('.hero')===null){
+   node.animate([{opacity:.62,transform:'translate3d(0,16px,0)'},{opacity:1,transform:'translate3d(0,0,0)'}],{duration:550,easing:'cubic-bezier(.16,1,.3,1)'});
+  }
+  node.classList.add('is-visible');
+  revealObserver.unobserve(node);
+ }
+}),{rootMargin:'0px 0px -35px',threshold:.03}):null;
 document.querySelectorAll('[data-reveal]').forEach(element=>revealObserver&&!reduced?revealObserver.observe(element):element.classList.add('is-visible'));
 
 const progress=document.getElementById('scroll-progress');
