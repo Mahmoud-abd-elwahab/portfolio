@@ -25,3 +25,31 @@ This is a verified source-and-browser audit, not a promise of hiring outcomes.
 ## Release gate not independently proven yet
 - Actual GitHub Pages hosted production response and cache invalidation after merge. A successful Git commit or local browser test does not prove the public site updated.
 - This audit establishes technical QA and source fidelity for the chosen presentation, not guaranteed hiring selection or campaign effectiveness.
+
+
+## Independent hiring gate follow-up — 4 November 2026, PR #2
+
+This supplements the earlier audit; previously accepted source assets and project curation were not reset.
+
+### Verified problems and repairs
+1. **uWallet World Cup sequence:** previously only the first typography board was tested; two more typography boards appeared after developed artwork. All three source lettering boards (indices 2, 6, 12) now precede art-direction studies (3, 4, 9) and developed executions (0, 5, 7, 8, 10, 11, 13, 14). The original brief-only board remains represented as editable context instead of a duplicate image. Credit and rollout limitations remain explicit.
+2. **Multi-brand overlap:** its original Behance cover prominently repeated Devil's Palace imagery despite that work having a separate case. The site preview and case opener now use an actual food concept from the multi-brand source (image 2). The selected gallery limits itself to images 10, 11 and 15 after the opening; the original source and nonfeatured work remain preserved and accessible.
+3. **Saudi Royal opening:** the original cover was a delivery rider even though the prior approved curation chose the family/meal concept as the representative lead. The preview and case opener now use original image 4 and omit its duplicate from the case gallery; delivery and other executions remain accessible.
+4. **Hiring first fold:** the 1440×900 screenshot had no artwork above the fold. The typography/hero hierarchy was tightened while keeping the source image aspect ratios intact. Updated browser screenshots show both first project images entering the first desktop viewport.
+5. **Visual stage labels and lazy artwork:** the old stage eyebrow said 'VISUAL DEVELOPMENT' even on typography and final execution headings; stage labels now reflect the actual stage. Artwork placeholder aspect ratios and critical-image loading eliminate empty/lazy image slots without cropping.
+
+### Current verification
+- PR: https://github.com/Mahmoud-abd-elwahab/portfolio/pull/2
+- Updated QA: https://github.com/Mahmoud-abd-elwahab/portfolio/actions/runs/41908337617 — success on commit a24106696cee8d975d3ffd7c134354d4b49f665c.
+- Tests additionally check: three World Cup stages and loaded artwork, all twelve first case artworks decoded in browser, no duplicate featured image for Saudi/multi-brand, early homepage artwork, responsive overflow, keyboard lightbox, reduced-motion and source integrity.
+- Actual review images from the action artifact were inspected for typography, development, executions, homepage and mobile/tablet behavior.
+- The repository remains 12 unique source projects and 237 original source media items.
+
+### Remaining release condition
+A PR check does not prove public Pages deployment. The new `.github/workflows/production-pages-smoke.yml` is designed to compare actual public HTTP-served HTML/CSS/JS/assets and CV bytes with the merged repository. Final delivery must cite the Pages deployment and **successful production smoke job for the merged commit**. If the smoke job fails, report this as a blocker instead of declaring an agency-ready published site.
+
+### Hiring judgment (not a guaranteed hiring outcome)
+- Lead: Uwallet Campaigns, Saudi Royal Nutrition, uWallet World Cup 2026, The Devil's Palace.
+- Supporting work: uWallet product campaign visuals, Olivewood, Automotive exploration, Multi-brand selections, Food visual studies.
+- Earlier/secondary: Big Chips, GYM Time, Al-Aqsa poster.
+- Editorial claims are bounded by visible source evidence. The agency recruiter still has to judge actual artwork quality and role fit, not just code correctness or successful automated tests.
