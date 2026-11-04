@@ -71,6 +71,7 @@ window.PORTFOLIO_EDITORIAL = {
   },
   devil: {
     kind: 'Agency social artwork · Servix Marketing',
+    displayName: 'The Devil’s Palace',
     omittedEditorialBoards: [20, 23],
     summary: 'Cinematic horror-themed social artwork produced using AI-assisted visual development, photo manipulation and compositing.',
     credits: 'Creative Visual Designer — social visual production and image-making. Campaign strategy ownership not asserted.',
@@ -79,6 +80,7 @@ window.PORTFOLIO_EDITORIAL = {
   },
   'uwallet-world-cup': {
     kind: 'Agency creative visuals · leoden dentsu',
+    displayName: 'uWallet — World Cup 2026',
     summary: 'A social-first World Cup campaign exploration for uWallet, connecting the brand’s cashback communication with Jordan’s first World Cup qualification.',
     credits: 'Creative Visual Designer — as credited in the published project brief board. Live rollout and performance metrics are not verified.',
     challenge: 'Celebrate Jordan’s football milestone, make the cashback proposition visible and keep the visual language adaptable across tournament-related content.',
@@ -96,11 +98,11 @@ window.PORTFOLIO_EDITORIAL = {
     approach: 'The executions focus on identifiable product cues and varied campaign scenarios while working within uWallet’s visual identity.',
     omittedEditorialBoards: [1]
   },
-  olivewood: {kind:'Film production studio promotional visuals',summary:'Visual concepts presenting Jordan as a film-production backdrop for Olivewood Studios.',credits:'Specific agency and individual role ownership have not been verified in the existing source audit.',challenge:'Introduce the studio and its production setting visually.',approach:'The showcased artworks connect Jordanian environments with cinematic framing and studio messaging.',featuredIndices:[1,3,4,5,6,7,8,9],omittedEditorialBoards:[0,2]},
-  'big-chips': {kind:'Independent food packaging and social design study',summary:'Packaging refresh concepts and product-led social media visuals for Big Chips, an Egyptian snack brand.',credits:'Proposed packaging and social media study; commissioning and commercial results have not been verified.',approach:'Flavour-led colour systems distinguish the product range, followed by product compositions and social applications.',featuredIndices:[2,3,6,8,9,10,11,12],omittedEditorialBoards:[0,1,7]},
-  food: {kind:'Independent food social design studies',summary:'Unofficial food and beverage design studies using recognizable Egyptian product categories.',credits:'Uncommissioned / unofficial concept work, as labelled in the original project boards. Brand endorsement or release is not asserted.',featuredIndices:[2,3,4,5,6,7,8,9],omittedEditorialBoards:[0,1]},
+  olivewood: {displayName:'Olivewood Studios',kind:'Film production studio promotional visuals',summary:'Visual concepts presenting Jordan as a film-production backdrop for Olivewood Studios.',credits:'Specific agency and individual role ownership have not been verified in the existing source audit.',challenge:'Introduce the studio and its production setting visually.',approach:'The showcased artworks connect Jordanian environments with cinematic framing and studio messaging.',featuredIndices:[1,3,4,5,6,7,8,9],omittedEditorialBoards:[0,2]},
+  'big-chips': {displayName:'Big Chips — Packaging & Social',kind:'Independent food packaging and social design study',summary:'Packaging refresh concepts and product-led social media visuals for Big Chips, an Egyptian snack brand.',credits:'Proposed packaging and social media study; commissioning and commercial results have not been verified.',approach:'Flavour-led colour systems distinguish the product range, followed by product compositions and social applications.',featuredIndices:[2,3,6,8,9,10,11,12],omittedEditorialBoards:[0,1,7]},
+  food: {displayName:'Food Social Visual Studies',kind:'Independent food social design studies',summary:'Unofficial food and beverage design studies using recognizable Egyptian product categories.',credits:'Uncommissioned / unofficial concept work, as labelled in the original project boards. Brand endorsement or release is not asserted.',featuredIndices:[2,3,4,5,6,7,8,9],omittedEditorialBoards:[0,1]},
   ai: {kind:'Selected multi-brand visual work',displayName:'Multi-brand — Social Visual Explorations',summary:'Selected AI-assisted promotional and social artwork spanning food, community, retail and service communication. This is a collection, not a single brand identity project.',credits:'Individual scopes and client approvals are not consistently documented for this mixed collection. The separate Devil’s Palace case is not counted here.',featuredIndices:[2,10,11,15,20,24,28,31],omittedEditorialBoards:[0,1,3,4,5,6,7,8,9]},
-  auto: {kind:'Independent automotive visual exploration',summary:'Unreleased automotive visual concepts exploring cinematic environments, lighting and vehicle-focused composition.',credits:'Personal/unreleased exploration — not commissioned advertising.',omittedEditorialBoards:[0]},
-  gym: {kind:'Brand identity design',credits:'Brief scope is shown in the source project; launch and business results are not verified.'},
-  aqsa: {kind:'Personal editorial poster',credits:'Personal project / editorial expression, not commercial agency work.'}
+  auto: {displayName:'Automotive Visual Exploration',kind:'Independent automotive visual exploration',summary:'Unreleased automotive visual concepts exploring cinematic environments, lighting and vehicle-focused composition.',credits:'Personal/unreleased exploration — not commissioned advertising.',omittedEditorialBoards:[0]},
+  gym: {displayName:'GYM Time — Visual Identity',kind:'Brand identity design',credits:'Brief scope is shown in the source project; launch and business results are not verified.'},
+  aqsa: {displayName:'Al-Aqsa — Editorial Poster',kind:'Personal editorial poster',credits:'Personal project / editorial expression, not commercial agency work.'}
 };
