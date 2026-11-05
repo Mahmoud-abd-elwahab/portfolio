@@ -66,3 +66,12 @@ A PR check does not prove public Pages deployment. The new `.github/workflows/pr
 - Updated static release tests to check cross-page asset revision coherence, and extended browser QA with hiring CTA, mobile first fold, and Olivewood image/credit checks.
 - **PASS**: GitHub Actions `Portfolio hiring-readiness QA` run https://github.com/Mahmoud-abd-elwahab/portfolio/actions/runs/41912977070 for code commit `5154accf915b2fdc207e89111f66baf21c799afc`. Static source audit and browser suite passed on desktop, tablet and mobile. Screenshots from the successful run were reviewed, including the revised 390px homepage first fold.
 - **Not published by this PR**: GitHub Pages still serves the default `main` branch pending merge. Do not describe this PR as deployed. Production smoke verification must run against the merge commit and verify served bytes before a live release is certified.
+
+## World Cup duplicate and Saudi original cover correction — 4 November 2026
+
+- Prior hiring-polish PR #3 is merged into main; this correction is scoped to PR #4: https://github.com/Mahmoud-abd-elwahab/portfolio/pull/4
+- **Confirmed issue:** World Cup source images 0 and 5 have the same Git blob SHA `650f2a3107fe5449159414351861b5f1bf2ae701` and therefore rendered as the same artwork twice. Removed image index 5 from displayed final executions, preserved both original source files and all existing projects. Added SHA-256 uniqueness assertion to prevent this regression.
+- **Restored cover:** Saudi Royal Nutrition now uses its original Behance project cover (`behance-projects/saudi/cover/cover.webp`) for both homepage project card and case hero. The mother-and-child meal image remains among selected executions, while the near-matching rider adaptation is available in the source archive.
+- Cache revision updated to v8, with browser and static regression tests.
+- **PASS:** GitHub Actions run https://github.com/Mahmoud-abd-elwahab/portfolio/actions/runs/41915607209 — desktop, tablet and mobile QA, static integrity and new duplicate/cover tests. Screenshots inspected: Saudi case hero is back to the original motorbike-and-delivery artwork; the World Cup final section starts with one copy of the main KV.
+- **Release gate:** PR #4 is unmerged as of this edit. Publishing to GitHub Pages requires merge and production verification; test success alone is not deployment.

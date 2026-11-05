@@ -11,7 +11,7 @@ const titleOf=p=>editorial[p.key]?.displayName||p.name;
 const card=(project,index)=>`<a class="project-card" data-project="${esc(project.key)}" data-reveal href="case.html?id=${encodeURIComponent(project.key)}" aria-label="Open ${esc(titleOf(project))} project">
   <div class="card-art">
     <span class="card-number">${num(index+1)} / ${num(projects.length)}</span>
-    <img src="${esc(project.key==='ai'?project.images[2]:project.key==='saudi'?project.images[4]:project.cover)}" alt="${project.key==='ai'?'Selected multi-brand food artwork':project.key==='saudi'?'Selected Saudi Royal Nutrition family and meal artwork':'Original Behance cover for '+esc(project.name)}" loading="${index<4?'eager':'lazy'}" decoding="async">
+    <img src="${esc(project.key==='ai'?project.images[2]:project.cover)}" alt="${project.key==='ai'?'Selected multi-brand food artwork':'Original Behance cover for '+esc(project.name)}" loading="${index<4?'eager':'lazy'}" decoding="async">
     <span class="view-circle" aria-hidden="true"><span>VIEW<br>PROJECT ↗</span></span>
   </div>
   <div class="card-meta"><div><h3>${esc(titleOf(project))}</h3><p>${esc(project.tag)}</p></div><b aria-hidden="true">↗</b></div>
@@ -57,7 +57,7 @@ const genericGallery=(project,info)=>{
  // Ensure no source item is lost or inadvertently duplicated.
  sequence=[...new Set([...sequence,...originals])];
  const curated=Array.isArray(info.featuredIndices)?info.featuredIndices:(project.key==='devil'?[0,21,22,24,25,26,27,28]:sequence);
- const representedByCaseHero=project.key==='ai'?2:project.key==='saudi'?4:null;
+ const representedByCaseHero=project.key==='ai'?2:null;
  const featured=[...new Set(curated)].filter(i=>sequence.includes(i)&&!hidden.has(i)&&i!==representedByCaseHero).slice(0,8);
  const show=new Set(featured);
  const extra=sequence.filter(i=>!show.has(i)&&i!==representedByCaseHero);
@@ -78,8 +78,8 @@ if(caseRoot){
    document.title=titleOf(project)+' — Mahmoud Abdel Wahab';
    const meta=document.querySelector('meta[name="description"]');
    if(meta)meta.content=(info.summary||project.description).slice(0,155);
-   const heroSrc=project.key==='ai'?project.images[2]:project.key==='saudi'?project.images[4]:project.cover;
-   const heroAlt=project.key==='ai'?'Selected food advertising artwork from the multi-brand collection':project.key==='saudi'?'Selected Saudi Royal Nutrition family and meal advertising artwork':'Original '+project.name+' project cover';
+   const heroSrc=project.key==='ai'?project.images[2]:project.cover;
+   const heroAlt=project.key==='ai'?'Selected food advertising artwork from the multi-brand collection':'Original '+project.name+' project cover';
    const selected=Array.isArray(info.sections)&&info.sections.length;
    const gallery=selected?
      info.sections.map(s=>narrativeSection(project,s)).join('')+
