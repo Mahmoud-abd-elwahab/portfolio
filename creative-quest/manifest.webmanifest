@@ -1,0 +1,19 @@
+{
+  "name": "Creative Quest — رحلة التفكير الإبداعي",
+  "short_name": "Creative Quest",
+  "description": "تدريبات التفكير الإبداعي في مستويات ومعارك Boss",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#090d18",
+  "theme_color": "#0b0e19",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
