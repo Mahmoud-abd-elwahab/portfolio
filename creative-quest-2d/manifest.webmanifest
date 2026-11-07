@@ -1,0 +1,20 @@
+{
+  "name": "Creative Quest — 2D Adventure",
+  "short_name": "Creative Quest",
+  "description": "رحلة Creative Thinking في عالم ثنائي الأبعاد",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#121b2b",
+  "theme_color": "#121b2b",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
