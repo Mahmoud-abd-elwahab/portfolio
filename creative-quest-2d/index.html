@@ -207,16 +207,29 @@ const SPRITE_GUARDIAN='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAwAAAAoACAY
 // Rendered 2D game: no AI API, no paid runtime dependencies.
 const $=id=>document.getElementById(id),canvas=$('world'),ctx=canvas.getContext('2d');
 const WW=2350,WH=1550,SPAWN={x:250,y:1290},MARKS=[{x:340,y:1275},{x:635,y:1275},{x:900,y:1175},{x:1200,y:1130},{x:1490,y:1020},{x:1730,y:820},{x:1890,y:625},{x:1580,y:415},{x:1240,y:310},{x:850,y:230}];
+// Distinct map layouts per realm: winding routes, switchbacks, loops, and diagonal climbs.
+const PATHS=[MARKS,
+[{x:370,y:1200},{x:580,y:1000},{x:880,y:1130},{x:1100,y:920},{x:1320,y:1050},{x:1580,y:780},{x:1860,y:700},{x:1660,y:470},{x:1370,y:300},{x:970,y:260}],
+[{x:410,y:1300},{x:650,y:1180},{x:900,y:1080},{x:900,y:840},{x:1210,y:800},{x:1480,y:940},{x:1830,y:820},{x:1940,y:560},{x:1640,y:320},{x:1140,y:250}],
+[{x:390,y:1230},{x:690,y:1200},{x:690,y:950},{x:970,y:955},{x:1230,y:1150},{x:1460,y:930},{x:1460,y:640},{x:1800,y:640},{x:1700,y:350},{x:1270,y:225}],
+[{x:370,y:1240},{x:600,y:1050},{x:830,y:960},{x:1090,y:840},{x:1390,y:900},{x:1580,y:630},{x:1850,y:520},{x:1990,y:300},{x:1580,y:260},{x:1100,y:320}],
+[{x:450,y:1250},{x:780,y:1200},{x:1010,y:1320},{x:1350,y:1180},{x:1370,y:860},{x:1080,y:720},{x:1350,y:520},{x:1740,y:520},{x:1920,y:275},{x:1410,y:210}],
+[{x:400,y:1170},{x:700,y:1080},{x:930,y:850},{x:680,y:650},{x:980,y:480},{x:1260,y:620},{x:1620,y:710},{x:1890,y:490},{x:1670,y:250},{x:1190,y:230}],
+[{x:430,y:1260},{x:750,y:1220},{x:1000,y:1030},{x:1300,y:1120},{x:1580,y:1030},{x:1860,y:790},{x:1630,y:570},{x:1350,y:620},{x:1060,y:350},{x:670,y:235}],
+[{x:390,y:1260},{x:680,y:1260},{x:880,y:1010},{x:1160,y:1010},{x:1370,y:810},{x:1650,y:920},{x:1820,y:650},{x:1620,y:440},{x:1320,y:370},{x:960,y:250}],
+[{x:420,y:1250},{x:660,y:1140},{x:950,y:1200},{x:1230,y:1000},{x:1510,y:900},{x:1780,y:780},{x:1980,y:570},{x:1800,y:350},{x:1430,y:250},{x:1080,y:175}]
+];
 const STORAGE='creative-quest-2d-v02';const newSave=()=>({done:[],unlocked:1,xp:0,attempts:{},answers:{},bossPhase:0,bossPhases:{},started:false});
 let save;try{save={...newSave(),...JSON.parse(localStorage.getItem(STORAGE)||'{}')};if(!Array.isArray(save.done))throw Error('bad')}catch(e){save=newSave()}
 function persist(){try{localStorage.setItem(STORAGE,JSON.stringify(save))}catch(e){say('التقدم مش بيتحفظ في المتصفح ده')}}
-const worldFor=n=>Math.min(9,Math.floor((Math.max(1,n)-1)/10)),localFor=n=>(Math.max(1,n)-1)%10,zone=()=>ALL_ZONES[worldFor(save.unlocked)],activeMark=()=>MARKS[localFor(save.unlocked)];
+const worldFor=n=>Math.min(9,Math.floor((Math.max(1,n)-1)/10)),localFor=n=>(Math.max(1,n)-1)%10,zone=()=>ALL_ZONES[worldFor(save.unlocked)],marksFor=()=>PATHS[worldFor(save.unlocked)],activeMark=()=>marksFor()[localFor(save.unlocked)];
 const player={x:SPAWN.x,y:SPAWN.y,moving:false,step:0,facing:1};const camera={x:0,y:0};const joy={x:0,y:0,id:null};let w=400,h=700,ratio=1,last=performance.now(),clock=0,mode='map',destination=null,keys={},near=false,particles=[],toastTimer;
 function rnd(n){const t=Math.sin(n*118.739+38.51)*43758.5453;return t-Math.floor(t)}
 const forest=Array.from({length:440},(_,i)=>({x:40+rnd(i+13)*2250,y:40+rnd(i*3+4)*1460,k:Math.floor(rnd(i*7+1)*4),s:18+rnd(i*17+8)*21}));
-const route=[SPAWN,...MARKS];const length=(x,y)=>Math.hypot(x,y),distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+let route=[SPAWN,...MARKS],routeIndex=0;const length=(x,y)=>Math.hypot(x,y),distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y),clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 function lineDistance(p){let d=1e9;for(let i=0;i<route.length-1;i++){const a=route[i],b=route[i+1],rx=b.x-a.x,ry=b.y-a.y,t=clamp(((p.x-a.x)*rx+(p.y-a.y)*ry)/(rx*rx+ry*ry),0,1);d=Math.min(d,length(p.x-a.x-t*rx,p.y-a.y-t*ry))}return d}
-const trees=forest.filter(p=>lineDistance(p)>113);
+let trees=forest.filter(p=>lineDistance(p)>113);
+function syncRoute(){let i=worldFor(save.unlocked);if(i!==routeIndex){routeIndex=i;route=[SPAWN,...PATHS[i]];trees=forest.filter(p=>lineDistance(p)>113)}}
 function setupCanvas(){let r=$('viewport').getBoundingClientRect();w=Math.max(250,r.width);h=Math.max(350,r.height);ratio=Math.min(window.devicePixelRatio||1,2);canvas.width=Math.ceil(w*ratio);canvas.height=Math.ceil(h*ratio);ctx.setTransform(ratio,0,0,ratio,0,0)}window.addEventListener('resize',setupCanvas);setupCanvas();
 function ellipse(x,y,rx,ry,color){ctx.fillStyle=color;ctx.beginPath();ctx.ellipse(x,y,rx,ry,0,0,6.283);ctx.fill()}
 function dot(x,y,r,color){ctx.fillStyle=color;ctx.beginPath();ctx.arc(x,y,r,0,6.283);ctx.fill()}
@@ -226,7 +239,7 @@ function tree(p){const {x,y,s,k}=p;ellipse(x+4,y+17,s*.56,8,'#0b1a2188');if(k===
 function gate(p,text,color){ctx.save();ctx.translate(p.x,p.y);ellipse(0,42,69,16,'#0715269c');box(-37,-54,74,111,[35,35,9,9],'#4f5269','#919bac');box(-26,-44,52,96,[25,25,5,5],'#192a39','#8084af');let gr=ctx.createRadialGradient(0,0,3,0,0,55);gr.addColorStop(0,color+'b6');gr.addColorStop(1,'#17263e');box(-21,-38,42,84,[22,22,3,3],gr);ctx.fillStyle='#efecfa';ctx.textAlign='center';ctx.font='800 14px Cairo';ctx.fillText('مغلق',0,75);ctx.restore()}
 const farGates=[{x:2135,y:1210,t:'Tension',c:'#b59eff'},{x:2180,y:295,t:'Insight',c:'#6cd7ff'},{x:365,y:335,t:'Territories',c:'#ffca72'}];
 function terrain(){
- const zi=worldFor(save.unlocked),z=zone(),base=z.colors[0],mid=z.colors[1],accent=z.colors[2];
+ syncRoute();const zi=worldFor(save.unlocked),z=zone(),base=z.colors[0],mid=z.colors[1],accent=z.colors[2];
  ctx.fillStyle=base;ctx.fillRect(0,0,WW,WH);
  const biome=['forest','canyon','city','lab','desert','library','portals','city2','factory','summit'][zi];
  for(let x=0;x<WW;x+=96)for(let y=0;y<WH;y+=96){let seed=rnd(x*.17+y*.13+zi*13);if(seed>.5){ctx.fillStyle=mid;ctx.globalAlpha=.16+seed*.13;ctx.fillRect(x,y,94,94);ctx.globalAlpha=1}if(seed>.87){dot(x+30,y+28,2.5,accent)}}
@@ -267,7 +280,7 @@ function hero(){const x=player.x,y=player.y;ctx.save();ctx.translate(x,y);ellips
 function indicators(){let p=activeMark(),d=distance(player,p);if(d>130){let a=Math.atan2(p.y-player.y,p.x-player.x),x=player.x+Math.cos(a)*80,y=player.y+Math.sin(a)*80;ctx.save();ctx.translate(x,y);ctx.rotate(a+Math.PI/2);ctx.beginPath();ctx.moveTo(0,-13);ctx.lineTo(-10,5);ctx.lineTo(10,5);ctx.closePath();ctx.fillStyle='#fff1ab';ctx.fill();ctx.restore()}}
 function confetti(){particles=particles.filter(p=>p.life>0);for(let p of particles){p.x+=p.vx;p.y+=p.vy;p.life-=.02;ctx.globalAlpha=clamp(p.life,0,1);dot(p.x,p.y,p.r,p.c)}ctx.globalAlpha=1}
 function celebrate(x,y){for(let i=0;i<42;i++){let a=i/42*6.283;particles.push({x,y,vx:Math.cos(a)*(2+rnd(i)*4),vy:Math.sin(a)*(2+rnd(i+21)*4)-1,life:1,r:2+rnd(i+7)*4,c:i%2?'#baff94':'#ffe2a3'})}}
-function draw(){ctx.clearRect(0,0,w,h);ctx.save();ctx.translate(-camera.x,-camera.y);terrain();MARKS.forEach(marker);indicators();confetti();hero();ctx.restore()}
+function draw(){ctx.clearRect(0,0,w,h);ctx.save();ctx.translate(-camera.x,-camera.y);terrain();marksFor().forEach(marker);indicators();confetti();hero();ctx.restore()}
 function tick(now){let dt=Math.min((now-last)/1000,.04);last=now;clock+=dt;if(mode==='map'){
  let dx=(keys.arrowright||keys.d?1:0)-(keys.arrowleft||keys.a?1:0)+joy.x,dy=(keys.arrowdown||keys.s?1:0)-(keys.arrowup||keys.w?1:0)+joy.y;
  if(Math.abs(dx)+Math.abs(dy)>.1)destination=null;
@@ -296,7 +309,7 @@ function check(i){let l=LEVELS[i],raw=$('answer').value.trim(),text=norm(raw);if
 let errors=[];if(!matches[0])errors.push('حدّد الموضوع أو النشاط الموجود في الشهادات.');if(!matches[1])errors.push('اكتب الفعل اللي بيتكرر عند الناس.');if(!matches[2])errors.push('كمل النتيجة أو النمط المشترك.');if(interpret)errors.push('الجملة فيها احتمال تفسير نفسي؛ التمرين محتاج Observation بس.');if(words<5)errors.push('اكتب جملة كاملة مش عنوان مختصر.');$('feedback').innerHTML=`<div class="feedback bad"><strong>الوحش لسه عنده طاقة — محاولة ${save.attempts[i+1]}</strong>${errors.join('<br>')}<br><span class="fine">ده فحص كلمات محدود وممكن يظلم إجابة سليمة.</span></div>${save.attempts[i+1]>=2?`<div class="review"><b>مراجعة ذاتية عادلة</b><p class="fine">شوف مثال منطقي، وبعدها قيّم إجابتك بصراحة بدل الاعتماد على الكلمات فقط.</p><button id="sample" class="btn alt">اعرض مثال</button><div id="sampleBox"></div></div>`:''}`;
 if(save.attempts[i+1]>=2)$('sample').onclick=()=>{$('sampleBox').innerHTML=`<p class="story">${l.sample}</p><label><input type="checkbox" id="one"> إجابة بتوصف سلوك موجود في الشهادات</label><label><input type="checkbox" id="two"> مفيهاش سبب نفسي متخيّل</label><label><input type="checkbox" id="three"> بتجمع النمط المشترك مش تعليق واحد</label><button class="btn" id="self">اعتمد بعد المراجعة</button>`;$('self').onclick=()=>{if(!['one','two','three'].every(x=>$(x).checked)){say('راجع الشروط الثلاثة');return}pass(i+1,true);$('feedback').innerHTML='<div class="feedback">✓ عديت بالمراجعة الذاتية (+15 XP). دي مش نتيجة AI.</div><div class="actions"><button class="btn" id="back">↗ ارجع للخريطة</button></div>';$('back').onclick=closeDialog;$('submit').disabled=true}}}
 function pass(n,manual){if(save.done.includes(n))return;save.done.push(n);save.unlocked=Math.min(100,n+1);save.xp+=manual?15:20;persist();
- if(worldFor(n)!==worldFor(save.unlocked)){player.x=SPAWN.x;player.y=SPAWN.y;destination=null;camera.x=0;camera.y=0;say('✦ بوابة عالم جديد اتفتحت!')}else{celebrate(MARKS[localFor(n)].x,MARKS[localFor(n)].y);say('✓ الطريق للحارس اللي بعده اتفتح!')}
+ if(worldFor(n)!==worldFor(save.unlocked)){player.x=SPAWN.x;player.y=SPAWN.y;destination=null;camera.x=0;camera.y=0;say('✦ بوابة عالم جديد اتفتحت!')}else{celebrate(marksFor()[localFor(n)].x,marksFor()[localFor(n)].y);say('✓ الطريق للحارس اللي بعده اتفتح!')}
  refresh()}
 function refresh(){
  $('xp').textContent=save.xp;$('complete').textContent=save.done.length+'/100';$('levelNumber').textContent='LEVEL '+String(save.unlocked).padStart(2,'0');
