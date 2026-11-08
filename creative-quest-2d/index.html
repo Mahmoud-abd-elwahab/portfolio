@@ -378,11 +378,30 @@ function playCue(kind){if(!soundEnabled.value)return;try{const A=window.AudioCon
 function questDuel(n,bossBattle=false){let i=worldFor(n);return `<div class="battleArena" aria-label="مواجهة تفكير"><div class="combatant"><div class="miniSprite"></div><span class="tag">YOUR IDEAS</span></div><div class="duel">⚡<small style="font:900 10px Cairo;display:block;color:#ffebbd">${bossBattle?'BOSS':'GUARDIAN'}</small></div><div class="combatant enemy"><div class="miniSprite" style="background-position:0 -${i*84}px;--mobY:-${i*66}px"></div><span class="tag">${esc(bossBattle?zone().boss:'حارس الأفكار')}</span></div></div>${bossBattle?'<p class="battleResult">أكسر 3 دروع بالتفكير مش بالضغط العشوائي.</p><div class="enemyLife"><i id="enemyLifeFill"></i></div>':''}`}
 function duelImpact(correct){let target=$('dialog').querySelector('.combatant'+(correct?'.enemy':'') );if(target){target.classList.remove('damage');void target.offsetWidth;target.classList.add('damage');setTimeout(()=>target.classList.remove('damage'),380)}playCue(correct?'hit':'miss');if(navigator.vibrate)try{navigator.vibrate(correct?[45,15,45]:45)}catch(e){}}
 const oldAPass=aPass; aPass=function(n,l,manual=false){duelImpact(true);oldAPass(n,l,manual)};
-const oldWrong=wrong;wrong=function(message){duelImpact(false);oldWrong(message)};
+const oldWrong=wrong;wrong=function(message){duelImpact(false);const l=CAMPAIGN_LEVELS.find(x=>x.n===save.unlocked);if(l&&!message.includes(l.hint))message+=' ' + l.hint;oldWrong(message)};
 const oldAdvancedChallenge=advancedChallenge;
 advancedChallenge=function(n){if(n<=30)return oldAdvancedChallenge(n);const l=CAMPAIGN_LEVELS.find(x=>x.n===n);if(!l)return say('المستوى لسه ما اتبنّاش.');modal(l.title,`WORLD ${String(worldFor(n)+1).padStart(2,'0')} · ${zone().skill} · LEVEL ${n}`,questDuel(n,false)+aHead(l,zone().skill)+'<div id="challengeMount"></div>');renderQuest(l)};
 const oldRenderQuest=renderQuest;
-renderQuest=function(l){if(l.kind!=='repair'&&l.kind!=='forge')return oldRenderQuest(l);
+renderQuest=function(l){
+ if(l.kind!=='repair'&&l.kind!=='forge'){
+  oldRenderQuest(l);
+  if(l.kind==='write'&&$('aSubmit')){
+   $('aSubmit').addEventListener('click',()=>{
+    const feedback=$('challengeFeedback');
+    if(!feedback?.querySelector('.review')||feedback.querySelector('#coachLink'))return;
+    const btn=document.createElement('button');
+    btn.id='coachLink';btn.className='btn alt';btn.textContent='✧ ناقش إجابتي في ChatGPT (اختياري)';
+    feedback.querySelector('.review').appendChild(btn);
+    btn.addEventListener('click',async()=>{
+     const prompt=`أنا بلعب Creative Quest في Level ${l.n} (${l.title}). ناقشني بالمصري كمدرب Creative Thinking، ومتكتبش الإجابة بدل مني.\nالمشهد:\n${l.notes.join('\n')}\nالمهمة: ${l.question}\nإجابتي: ${save.answers[l.n]||''}\nقيّم الفهم مش البلاغة، واسأل سؤال واحد في كل مرة.`;
+     try{await navigator.clipboard.writeText(prompt);say('اتنسخ التحدي — الصقه في ChatGPT')}
+     catch(e){say('النسخ محتاج متصفح بيدعم Clipboard')}
+    });
+   });
+  }
+  return;
+ }
+
  const n=l.n,repair=l.kind==='repair';let content='';
  if(repair){content=`<div class="challengeCaption">🛠 الفكرة الضعيفة اللي هتصلّحها:</div><div class="quote" style="border-color:#dc9c83">${esc(l.bad)}</div><div class="choices">${l.options.map((o,i)=>`<button class="choice" data-answer="${i}">${esc(o)}</button>`).join('')}</div>`}
  else content=`<p class="fine">⚒ رتّب السلسلة: اختار العنصر المناسب لكل مرحلة.</p><div class="pairFields">${l.steps.map((step,i)=>`<div class="forgeRow"><label class="label" for="f-${i}">${esc(step.label)}</label><select id="f-${i}" class="answerSelect"><option value="">اختار...</option>${step.options.map((o,k)=>`<option value="${k}">${esc(o)}</option>`).join('')}</select></div>`).join('')}</div><div class="actions"><button class="btn" id="forgeSubmit">⚒ ابنِ الفكرة</button></div>`;
@@ -404,6 +423,7 @@ worldMap=function(){modal('أبواب العوالم','CREATIVE QUEST · 100 LEV
 const oldMenu=menu;
 menu=function(){oldMenu();$('dialog').querySelector('.dialogHead small').textContent='CREATIVE QUEST 2D · v0.4';let buttons=$('dialog').querySelector('.actions');if(buttons){const a=document.createElement('button');a.className='btn alt';a.textContent='✧ شجرة المهارات';a.onclick=showSkills;buttons.appendChild(a);const s=document.createElement('button');s.className='btn alt';s.textContent='🔊 الصوت: مغلق';s.onclick=()=>{soundEnabled.value=!soundEnabled.value;s.textContent='🔊 الصوت: '+(soundEnabled.value?'مفتوح':'مغلق')};buttons.appendChild(s)}};
 // Export a compact diagnostic to allow deterministic smoke tests; not user personal data.
+$('worlds').onclick=worldMap;$('menu').onclick=menu;
 window.CreativeQuestDiagnostics={total:100,worlds:10,levelNumbers:[...Array(9)].map((_,i)=>i+1).concat(EXTRA_LEVELS.map(x=>x.n),CAMPAIGN_LEVELS.map(x=>x.n),[10,20,30,40,50,60,70,80,90,100]).sort((a,b)=>a-b),getState:()=>({unlocked:save.unlocked,done:save.done.length,xp:save.xp,world:worldFor(save.unlocked)}),openLevel:n=>{if(n>save.unlocked)return false;if(n<=30){if(n===10){openBoss();return true}if(n%10===0){openBossExtra(n);return true}if(n<10)observationVariant(n-1);else advancedChallenge(n);return true}if(n%10===0)openBossExtra(n);else advancedChallenge(n);return true}}
 
 </script></body></html>
