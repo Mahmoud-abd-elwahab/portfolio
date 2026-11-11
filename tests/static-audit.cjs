@@ -62,7 +62,7 @@ assert.deepEqual(Array.from(olive.featuredIndices),[7,8,9,10,11],'Olivewood must
 for(const i of [3,4,5,13,14,15])
  assert(olive.omittedEditorialBoards.includes(i),'Olivewood text board '+i+' must not be rendered as portfolio artwork.');
 assert(olive.credits.includes('Art Director'),'Olivewood HTML attribution must reflect its original collaboration board.');
-assert(index.includes('HIRING A<br>GRAPHIC<br>DESIGNER'),'Contact section should address agency recruitment.');
+assert(index.includes('HIRING A<br>SENIOR<br>GRAPHIC<br>DESIGNER'),'Contact section should address senior graphic designer recruitment.');
 assert(!js.includes("project.key==='saudi'?project.images[4]"),'Saudi cover must not be silently replaced by image index 4.');
 assert(js.includes('motion-ready')&&css.includes('portfolio-headline-arrive'),'Expected actual controlled site motion.');
 assert(css.includes('prefers-reduced-motion:reduce'),'Reduced motion styles must exist.');
